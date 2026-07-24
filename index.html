@@ -832,16 +832,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // ── AUTO-HEIGHT: meldet die Inhaltshoehe an die einbettende Seite (iframe) ──
-(function(){
-  function reportHeight(){
-    try{
-      var h = Math.max(
-        document.body.scrollHeight, document.documentElement.scrollHeight,
-        document.body.offsetHeight, document.documentElement.offsetHeight
-      );
-        parent.postMessage({ height: h }, '*');
-    }catch(e){}
-  }
+function reportHeight(){
+  try{
+    var el = document.querySelector('.grf-beutegreifer');
+    var h = el ? Math.ceil(el.getBoundingClientRect().height) : document.body.scrollHeight;
+    parent.postMessage({ height: h }, '*');
+  }catch(e){}
+}
   window.addEventListener('load', reportHeight);
   window.addEventListener('resize', reportHeight);
   // bei jeder Navigation/Interaktion neu messen
