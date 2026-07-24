@@ -832,20 +832,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // ── AUTO-HEIGHT: meldet die Inhaltshoehe an die einbettende Seite (iframe) ──
-function reportHeight(){
-  try{
-    var el = document.querySelector('.grf-beutegreifer');
-    var h = el ? Math.ceil(el.getBoundingClientRect().height) : document.body.scrollHeight;
-    parent.postMessage({ height: h }, '*');
-  }catch(e){}
-}
+(function(){
+  var last = 0;
+  function reportHeight(){
+    try{
+      var el = document.querySelector('.grf-beutegreifer');
+      var h = el ? Math.ceil(el.getBoundingClientRect().height) : document.body.scrollHeight;
+      if (h && Math.abs(h - last) > 1){
+        last = h;
+        parent.postMessage({ height: h }, '*');
+      }
+    }catch(e){}
+  }
   window.addEventListener('load', reportHeight);
   window.addEventListener('resize', reportHeight);
-  // bei jeder Navigation/Interaktion neu messen
-  document.addEventListener('click', function(){ setTimeout(reportHeight, 60); });
-  // Sicherheitsnetz: kurz nach Start nochmals melden
-  setTimeout(reportHeight, 300);
-  setTimeout(reportHeight, 1000);
+  document.addEventListener('click', function(){ setTimeout(reportHeight, 80); });
+
+  // Beobachtet Inhaltsaenderungen (Kacheln, Themenwechsel) und misst automatisch neu
+  if (window.ResizeObserver){
+    var target = document.querySelector('.grf-beutegreifer') || document.body;
+    new ResizeObserver(reportHeight).observe(target);
+  }
+
+  // Sicherheitsnetz fuer den ersten Aufbau
+  setTimeout(reportHeight, 100);
+  setTimeout(reportHeight, 500);
+  setTimeout(reportHeight, 1200);
 })();
 
 </script>
