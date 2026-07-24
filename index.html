@@ -839,7 +839,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.scrollHeight, document.documentElement.scrollHeight,
         document.body.offsetHeight, document.documentElement.offsetHeight
       );
-      parent.postMessage({ grfBeutegreiferHeight: h }, '*');
+     parent.postMessage({ height: h, grfBeutegreiferHeight: h }, '*');
     }catch(e){}
   }
   window.addEventListener('load', reportHeight);
