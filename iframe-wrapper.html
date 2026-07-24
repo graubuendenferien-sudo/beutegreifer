@@ -24,14 +24,17 @@
 
   <script>
     var frame = document.getElementById('grf-frame');
+    var lastHeight = 0;
     frame.style.height = '1200px'; // Startwert, bis die echte Höhe kommt
 
     window.addEventListener('message', function (event) {
       if (event.origin.indexOf('graubuendenferien-sudo.github.io') === -1) return;
-      var d = event.data || {};
-      var h = d.height;
-      if (h) {
-        frame.style.height = (h + 8) + 'px';
+      var h = (event.data || {}).height;
+      if (!h) return;
+      // Nur setzen, wenn sich die Höhe deutlich geändert hat (verhindert Aufschaukeln)
+      if (Math.abs(h - lastHeight) > 2) {
+        lastHeight = h;
+        frame.style.height = h + 'px';
       }
     });
   </script>
