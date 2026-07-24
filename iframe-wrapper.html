@@ -8,7 +8,6 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
       width: 100%;
-      overflow: hidden;              /* kein eigener Scrollbalken der Wrapper-Seite */
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
     iframe {
@@ -24,11 +23,15 @@
           scrolling="no"></iframe>
 
   <script>
+    var frame = document.getElementById('grf-frame');
+    frame.style.height = '1200px'; // Startwert, bis die echte Höhe kommt
+
     window.addEventListener('message', function (event) {
-      if (event.origin !== 'https://graubuendenferien-sudo.github.io') return;
-      var h = event.data && event.data.grfBeutegreiferHeight;
+      if (event.origin.indexOf('graubuendenferien-sudo.github.io') === -1) return;
+      var d = event.data || {};
+      var h = d.height;
       if (h) {
-        document.getElementById('grf-frame').style.height = (h + 4) + 'px';  // kleiner Puffer
+        frame.style.height = (h + 8) + 'px';
       }
     });
   </script>
