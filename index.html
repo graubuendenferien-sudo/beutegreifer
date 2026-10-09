@@ -13,6 +13,7 @@
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
+  button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
   .grf-beutegreifer *{margin:0;padding:0;}
   .grf-beutegreifer{font-family:"Inter","Helvetica Neue",Arial,sans-serif;color:var(--grf-ink);background:var(--grf-bg);line-height:1.6;-webkit-font-smoothing:antialiased;}
   .grf-wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px 60px;}
@@ -408,14 +409,14 @@ function resetAll() {
   showScreen('screen-thema');
 }
 
-// iOS-sicheres Touch-Handling
+// Klick-Handling (Desktop + Mobile). Der Browser feuert "click" nur bei
+// einem echten Tippen, nicht beim Scrollen.
 function addTouchHandler(el, fn) {
   if (!el) return;
-  el.addEventListener('touchstart', function() { el._touched = true; }, { passive: true });
-  el.addEventListener('touchend', function() {
-    if (el._touched) { el._touched = false; setTimeout(fn, 10); }
-  }, { passive: true });
-  el.addEventListener('click', function() { if (!el._touched) fn(); });
+  el.addEventListener('click', function (e) {
+    e.preventDefault();
+    fn();
+  });
 }
 
 // ── KACHEL-GRID (einmalig beim Start) ────────────────────────────────────
