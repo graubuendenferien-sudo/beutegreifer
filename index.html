@@ -5,103 +5,177 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Wolf, Bär & Luchs in Graubünden – Verhalten & Tipps | Graubünden Ferien</title>
 <style>
+/* GRF web fonts - zentral im Repository grf-fonts (GitHub Pages) */
+@font-face {
+  font-family: "CircularGraubuendenWeb";
+  src: url("https://graubuendenferien-sudo.github.io/grf-fonts/CirculargraubuendenWeb-Book.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "CircularGraubuendenWeb";
+  src: url("https://graubuendenferien-sudo.github.io/grf-fonts/CirculargraubuendenWeb-Bold.woff2") format("woff2");
+  font-weight: 600 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "TheMix";
+  src: url("https://graubuendenferien-sudo.github.io/grf-fonts/TheMix_500_.woff2") format("woff2");
+  font-weight: 400 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "TheMix";
+  src: url("https://graubuendenferien-sudo.github.io/grf-fonts/TheMix_700_.woff2") format("woff2");
+  font-weight: 600 700; font-style: normal; font-display: swap;
+}
 
-  :root{
-    --grf-red:#E2001A; --grf-dark:#1D1D1B; --grf-ink:#2A2A28; --grf-soft:#6E6E68;
-    --grf-line:#E4E2DC; --grf-bg:#F6F5F1; --grf-card:#FFFFFF; --grf-tint:#FBEAEC;
-    --grf-tint2:#F1F0EB; --radius:10px; --shadow:0 1px 3px rgba(29,29,27,.08),0 6px 24px rgba(29,29,27,.06); --maxw:900px;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
-  .grf-beutegreifer *{margin:0;padding:0;}
-  .grf-beutegreifer{font-family:"Inter","Helvetica Neue",Arial,sans-serif;color:var(--grf-ink);background:var(--grf-bg);line-height:1.6;-webkit-font-smoothing:antialiased;}
-  .grf-wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px 60px;}
-  .grf-head{padding:32px 0 18px;border-bottom:3px solid var(--grf-red);margin-bottom:24px;}
-  .grf-eyebrow{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--grf-red);font-weight:700;}
-  .grf-head h1{font-size:30px;line-height:1.2;font-weight:800;margin-top:6px;color:var(--grf-dark);}
-  .grf-head .grf-sub{font-size:15px;color:var(--grf-soft);margin-top:8px;}
-  .grf-bar{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap;}
-  .grf-back{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--grf-line);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;color:var(--grf-ink);cursor:pointer;font-family:inherit;transition:.15s;}
-  .grf-back:hover{background:var(--grf-red);border-color:var(--grf-red);color:#fff;}
-  .grf-crumb{font-size:13px;color:var(--grf-soft);}
-  .grf-crumb b{color:var(--grf-ink);}
-  .screen{display:none;}
-  .screen.active{display:block;animation:grf-fade .25s ease;}
-  @keyframes grf-fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
-  .step-label{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--grf-soft);font-weight:700;margin-bottom:14px;}
-  .themen-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;}
-  .thema-btn{background:var(--grf-card);border:1px solid var(--grf-line);border-radius:var(--radius);padding:22px 14px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:10px;box-shadow:var(--shadow);font-family:inherit;text-align:center;transition:.15s;min-height:120px;justify-content:center;}
-  .thema-btn:hover{border-color:var(--grf-red);transform:translateY(-2px);}
-  .thema-btn.utility{background:var(--grf-tint2);}
-  .t-icon{font-size:34px;line-height:1;}
-  .t-name{font-size:14px;font-weight:700;color:var(--grf-ink);line-height:1.3;}
-  .stich-btn{width:100%;background:var(--grf-card);border:1px solid var(--grf-line);border-radius:var(--radius);padding:16px 18px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-family:inherit;font-size:15px;font-weight:600;color:var(--grf-ink);text-align:left;box-shadow:var(--shadow);transition:.15s;}
-  .stich-btn:hover{border-color:var(--grf-red);color:var(--grf-red);}
-  .stich-btn .arrow{color:var(--grf-red);font-size:18px;margin-left:10px;}
-  .toggle-bar{display:flex;gap:4px;border-bottom:1px solid var(--grf-line);margin:6px 0 20px;}
-  .toggle-btn{background:none;border:none;border-bottom:3px solid transparent;padding:10px 16px;font-family:inherit;font-size:14px;font-weight:600;color:var(--grf-soft);cursor:pointer;margin-bottom:-1px;transition:.15s;}
-  .toggle-btn:hover{color:var(--grf-ink);}
-  .toggle-btn.active{color:var(--grf-red);border-bottom-color:var(--grf-red);}
-  .wording-card{background:var(--grf-tint);border:1px solid #F3C9CE;border-left:4px solid var(--grf-red);border-radius:var(--radius);padding:20px 22px;margin-bottom:16px;}
-  .card-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--grf-red);font-weight:700;margin-bottom:10px;}
-  .wording-text{font-size:16px;line-height:1.7;color:var(--grf-ink);}
-  .wording-text ul{padding-left:20px;margin-top:8px;}
-  .wording-text li{margin-bottom:6px;}
-  .wording-text a{color:var(--grf-red);}
-  .erstreaktion-box{background:var(--grf-tint2);border:1px solid var(--grf-line);border-radius:var(--radius);padding:14px 18px;margin-bottom:16px;}
-  .erstreaktion-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--grf-soft);font-weight:700;margin-bottom:6px;}
-  .erstreaktion-text{font-size:14px;line-height:1.55;color:var(--grf-ink);}
-  .meta-row{display:flex;flex-direction:column;gap:4px;padding:14px 0;border-bottom:1px solid var(--grf-line);}
-  .meta-row:last-child{border-bottom:none;}
-  .meta-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--grf-soft);font-weight:700;}
-  .meta-val{font-size:15px;color:var(--grf-ink);line-height:1.5;}
-  .kontakt-card{background:var(--grf-card);border:1px solid var(--grf-line);border-radius:var(--radius);padding:18px;margin-bottom:12px;box-shadow:var(--shadow);}
-  .kontakt-name{font-size:16px;font-weight:700;margin-bottom:12px;}
-  .kontakt-actions{display:flex;gap:10px;flex-wrap:wrap;}
-  .kontakt-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:999px;font-size:14px;font-weight:600;text-decoration:none;}
-  .btn-tel{background:var(--grf-red);color:#fff;}
-  .btn-mail{background:var(--grf-tint2);color:var(--grf-ink);border:1px solid var(--grf-line);}
-  .btn-reset{margin-top:20px;padding:12px 22px;background:none;border:1px solid var(--grf-line);border-radius:999px;font-family:inherit;font-size:14px;font-weight:600;color:var(--grf-ink);cursor:pointer;transition:.15s;}
-  .btn-reset:hover{background:var(--grf-red);border-color:var(--grf-red);color:#fff;}
-  .info-card{background:var(--grf-card);border:1px solid var(--grf-line);border-radius:var(--radius);margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow);}
-  .info-card-header{background:var(--grf-dark);color:#fff;font-size:14px;font-weight:700;padding:12px 18px;}
-  .info-card-body{padding:18px;font-size:15px;line-height:1.7;}
-  .info-card-body p+p{margin-top:12px;}
-  .info-step{display:flex;gap:14px;padding:16px 18px;border-top:1px solid var(--grf-line);}
-  .info-step:first-of-type{border-top:none;}
-  .info-step-num{width:28px;height:28px;background:var(--grf-red);color:#fff;border-radius:50%;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .info-step-title{font-size:15px;font-weight:700;margin-bottom:4px;}
-  .info-step-text>*:not(.info-step-title){font-size:14px;color:var(--grf-soft);}
-  .abk-table{width:100%;border-collapse:collapse;font-size:14px;}
-  .abk-table td{padding:10px 14px;border-bottom:1px solid var(--grf-line);vertical-align:top;}
-  .abk-table td:first-child{font-weight:700;color:var(--grf-red);white-space:nowrap;width:90px;}
-  .links-tile{background:var(--grf-card);border:1px solid var(--grf-line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:14px;}
-  .links-tile-header{background:var(--grf-dark);color:#fff;font-size:14px;font-weight:700;padding:11px 18px;}
-  .link-item{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-top:1px solid var(--grf-line);text-decoration:none;color:var(--grf-ink);gap:10px;transition:.12s;}
-  .link-item:first-of-type{border-top:none;}
-  .link-item:hover{background:var(--grf-tint);}
-  .link-text{flex:1;font-size:14px;font-weight:600;}
-  .link-desc{display:block;font-size:12px;color:var(--grf-soft);font-weight:400;margin-top:2px;}
-  .link-arrow{color:var(--grf-red);font-size:16px;}
-  .empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:50px 20px;color:var(--grf-soft);text-align:center;gap:12px;}
-  .e-icon{font-size:36px;}
-  @media(max-width:560px){.grf-head h1{font-size:24px;}.themen-grid{grid-template-columns:1fr 1fr;}.toggle-btn{padding:9px 10px;font-size:13px;}}
+:root{
+  /* GRF Evolution – Design Tokens */
+  --granit:#79775F; --granit-75:#A19E8C; --granit-50:#C0BFB2; --granit-25:#E0DFD9;
+  --granit-10:#F2F2F0; --granit-5:#F9F9F7; --granit-hover:#666450;
+  --slate-dark:#282828; --slate:#3C3C3C; --slate-10:#EAEAEA;
+  --granat:#C60219; --granat-dark:#910013;
+  --grf-black:#191813; --grf-black-80:#474642;
+  --font-circular:"CircularGraubuendenWeb","Circular Std","CircularStd","DM Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --font-mix:"TheMix","TheMixOsF","TheMix Plain","Alegreya Sans","Gill Sans","Trebuchet MS",sans-serif;
+  --maxw:900px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;height:auto;}
+button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
+.grf-tool *{margin:0;padding:0;}
+.grf-tool{font-family:var(--font-circular);font-size:16px;line-height:24px;font-weight:400;color:var(--grf-black);background:#fff;-webkit-font-smoothing:antialiased;}
+.grf-tool button{font-family:var(--font-circular);}
+.grf-tool a{color:var(--granit);}
+.grf-tool a:hover{color:var(--slate);}
+.grf-wrap{max-width:var(--maxw);margin:0 auto;padding:24px 16px 48px;}
 
+/* Topline + Titel */
+.page-intro{margin:0 0 24px;}
+.topline{margin:0;color:var(--grf-black);font-size:clamp(32px,9vw,40px);font-weight:700;letter-spacing:-.02em;line-height:1.24;}
+.title{margin:2px 0 0;color:var(--grf-black);font-family:var(--font-mix);font-size:clamp(30px,8vw,36px);font-weight:400;letter-spacing:0;line-height:1.25;}
+.intro{margin-top:16px;font-size:16px;line-height:24px;color:var(--grf-black-80);}
+@media(min-width:761px){.page-intro{margin-bottom:32px;}.topline{font-size:clamp(32px,3.6vw,42px);}.title{font-size:clamp(32px,3.5vw,40px);}}
+
+/* Navigation */
+.grf-bar{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
+.grf-crumb{font-size:16px;line-height:24px;color:var(--grf-black-80);}
+.grf-crumb b{color:var(--grf-black);font-weight:700;}
+.screen{display:none;}
+.screen.active{display:block;}
+
+/* Buttons nach Styleguide */
+.btn,.grf-back,.btn-reset{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 32px;border:1px solid var(--granit);border-radius:0;font-size:12px;line-height:16px;font-weight:700;text-transform:uppercase;letter-spacing:.96px;text-decoration:none;cursor:pointer;transition:background .15s,color .15s,border-color .15s;}
+.grf-back,.btn-reset{background:#fff;color:var(--granit);}
+.grf-back:hover,.btn-reset:hover,.grf-back:active,.btn-reset:active{background:#fff;color:var(--slate);border-color:var(--slate);}
+.btn-reset{margin-top:24px;}
+.grf-tool a.btn-primary{background:var(--granit);color:#fff;}
+.grf-tool a.btn-primary:hover,.grf-tool a.btn-primary:active{background:var(--granit-hover);border-color:var(--granit-hover);color:#fff;}
+.grf-tool a.btn-secondary{background:#fff;color:var(--granit);}
+.grf-tool a.btn-secondary:hover,.grf-tool a.btn-secondary:active{color:var(--slate);border-color:var(--slate);}
+.grf-tool a.btn-small,.btn-small{padding:8px 24px;text-transform:none;letter-spacing:.2px;font-size:16px;line-height:24px;font-weight:400;word-break:break-word;}
+:focus-visible{outline:2px solid var(--slate);outline-offset:2px;}
+
+/* Themenwahl */
+.step-label{font-size:11px;line-height:16px;letter-spacing:.55px;text-transform:uppercase;color:var(--grf-black-80);font-weight:700;margin-bottom:16px;}
+.themen-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;}
+.thema-btn{background:var(--granit-5);border:1px solid var(--granit-25);border-radius:0;padding:20px 12px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;min-height:128px;transition:border-color .15s,background .15s;}
+.thema-btn:hover{border-color:var(--granit);background:var(--granit-10);}
+.thema-btn.utility{background:var(--granit-10);}
+.t-icon{font-size:32px;line-height:1;}
+.t-name{font-size:16px;font-weight:700;color:var(--grf-black);line-height:22px;}
+
+/* Stichwortliste */
+.stich-btn{width:100%;background:#fff;border:1px solid var(--granit-25);border-radius:0;padding:16px;margin-bottom:8px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:16px;line-height:24px;font-weight:700;color:var(--grf-black);text-align:left;transition:border-color .15s,background .15s;}
+.stich-btn:hover{border-color:var(--granit);background:var(--granit-5);}
+.stich-btn .arrow{color:var(--granit);font-size:20px;line-height:24px;margin-left:12px;}
+
+/* Tabs */
+.toggle-bar{display:flex;gap:4px;border-bottom:1px solid var(--granit-25);margin:0 0 20px;flex-wrap:wrap;}
+.toggle-btn{background:none;border:none;border-bottom:3px solid transparent;border-radius:0;padding:12px 16px;font-size:16px;line-height:24px;font-weight:700;color:var(--grf-black-80);cursor:pointer;margin-bottom:-1px;transition:color .15s,border-color .15s;}
+.toggle-btn:hover{color:var(--slate);}
+.toggle-btn.active{color:var(--grf-black);border-bottom-color:var(--granit);}
+
+/* Inhalte */
+.wording-card{background:var(--granit-5);border:1px solid var(--granit-25);border-left:4px solid var(--granit);padding:20px;margin-bottom:16px;}
+.card-label{font-size:11px;line-height:16px;letter-spacing:.55px;text-transform:uppercase;color:var(--granit);font-weight:700;margin-bottom:8px;}
+.wording-text{font-size:16px;line-height:24px;color:var(--grf-black);}
+.wording-text ul{padding-left:20px;margin-top:8px;}
+.wording-text li{margin-bottom:8px;}
+.wording-text strong{font-weight:700;}
+.erstreaktion-box{background:var(--granit-10);padding:16px 20px;margin-bottom:16px;}
+.erstreaktion-label{font-size:11px;line-height:16px;letter-spacing:.55px;text-transform:uppercase;color:var(--grf-black-80);font-weight:700;margin-bottom:4px;}
+.erstreaktion-text{font-size:16px;line-height:24px;}
+.meta-row{display:flex;flex-direction:column;gap:4px;padding:16px 0;border-bottom:1px solid var(--granit-25);}
+.meta-row:last-child{border-bottom:none;}
+.meta-label{font-size:11px;line-height:16px;letter-spacing:.55px;text-transform:uppercase;color:var(--grf-black-80);font-weight:700;}
+.meta-val{font-size:16px;line-height:24px;}
+.kontakt-card{background:#fff;border:1px solid var(--granit-25);padding:20px;margin-bottom:12px;}
+.kontakt-name{font-size:20px;line-height:24px;font-weight:700;margin-bottom:12px;}
+.kontakt-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+
+/* Anleitung */
+.info-card{background:#fff;border:1px solid var(--granit-25);margin-bottom:16px;overflow:hidden;}
+.info-card-header{background:var(--slate);color:#fff;font-size:16px;line-height:24px;font-weight:700;padding:12px 20px;}
+.info-card-body{padding:20px;font-size:16px;line-height:24px;}
+.info-card-body p+p{margin-top:12px;}
+.info-step{display:flex;gap:16px;padding:16px 20px;border-top:1px solid var(--granit-25);}
+.info-card-header+.info-step{border-top:none;}
+.info-step-num{min-width:32px;height:32px;background:var(--granit);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.info-step-title{font-size:16px;line-height:24px;font-weight:700;margin-bottom:4px;}
+.info-step-text{color:var(--grf-black-80);}
+.abk-table{width:100%;border-collapse:collapse;font-size:16px;line-height:24px;}
+.abk-table td{padding:12px 16px;border-bottom:1px solid var(--granit-25);vertical-align:top;}
+.abk-table tr:last-child td{border-bottom:none;}
+.abk-table td:first-child{font-weight:700;color:var(--granit);white-space:nowrap;width:100px;}
+
+/* Links */
+.links-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+@media(min-width:761px){.links-grid{grid-template-columns:1fr 1fr;}}
+.links-tile{background:#fff;border:1px solid var(--granit-25);overflow:hidden;}
+.links-tile-header{background:var(--slate);color:#fff;font-size:16px;line-height:24px;font-weight:700;padding:12px 20px;}
+.link-item{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-top:1px solid var(--granit-25);text-decoration:none;color:var(--grf-black);gap:12px;transition:background .15s;}
+.links-tile-header+.link-item{border-top:none;}
+.link-item:hover{background:var(--granit-5);}
+.link-text{flex:1;font-size:16px;line-height:24px;font-weight:700;}
+.link-desc{display:block;font-size:12px;line-height:16px;color:var(--grf-black-80);font-weight:400;margin-top:2px;letter-spacing:.24px;}
+.link-arrow{color:var(--granit);font-size:18px;font-weight:700;}
+.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 20px;color:var(--grf-black-80);text-align:center;gap:12px;}
+.e-icon{font-size:36px;}
+
+/* Entscheidungsbaum */
+.dt{font-size:16px;line-height:24px;}
+.dt-start{background:var(--slate);color:#fff;padding:16px 20px;}
+.dt-arrow{text-align:center;font-size:20px;line-height:1;color:var(--granit);margin:8px 0;}
+.dt-q{border:1px solid var(--granit);background:var(--granit-5);padding:16px 20px;}
+.dt-q-title{font-weight:700;margin-bottom:4px;}
+.dt-q-text{margin-bottom:12px;color:var(--grf-black-80);}
+.dt-ja,.dt-nein{padding:8px 12px;margin-bottom:8px;}
+.dt-nein{margin-bottom:0;}
+.dt-ja{background:#fff;border-left:4px solid var(--granat);}
+.dt-nein{background:var(--granit-10);border-left:4px solid var(--granit);}
+.dt-ja strong{color:var(--granat);}
+.dt-nein strong{color:var(--granit);}
+.dt-note{border:1px dashed var(--granit-75);background:var(--granit-10);padding:16px 20px;margin-top:8px;}
+
+@media(max-width:560px){
+  .themen-grid{grid-template-columns:1fr 1fr;}
+  .toggle-btn{padding:12px 10px;font-size:15px;}
+  .btn,.grf-back,.btn-reset{padding:14px 20px;}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
 </style>
 </head>
 <body>
 
-<section class="grf-beutegreifer">
+<div class="grf-tool">
  <div class="grf-wrap">
-  <header class="grf-head">
-    <div class="grf-eyebrow">Graub&uuml;nden Ferien &middot; Gut zu wissen</div>
-    <h1>Tourismus und Beutegreifer</h1>
-    <div class="grf-sub">Wie verhalte ich mich bei einer Begegnung mit Wolf, B&auml;r oder Luchs? Antworten, Verhaltensregeln und Anlaufstellen rund um die grossen Beutegreifer in Graub&uuml;nden.</div>
+  <header class="page-intro">
+    <p class="topline">Gut zu wissen.</p>
+    <h1 class="title">Tourismus und Beutegreifer</h1>
+    <p class="intro">Wie verhalte ich mich bei einer Begegnung mit Wolf, Bär oder Luchs? Antworten, Verhaltensregeln und Anlaufstellen rund um die grossen Beutegreifer in Graubünden.</p>
   </header>
 
   <div id="screen-thema" class="screen active">
-    <div class="step-label">Themenfeld w&auml;hlen</div>
+    <div class="step-label">Themenfeld wählen</div>
     <div class="themen-grid" id="themen-grid"></div>
   </div>
 
@@ -115,12 +189,12 @@
 
   <div id="screen-ausgabe" class="screen">
     <div class="grf-bar">
-      <button class="grf-back" id="back-ausgabe" type="button">&larr; Zur&uuml;ck</button>
+      <button class="grf-back" id="back-ausgabe" type="button">&larr; Zurück</button>
       <span class="grf-crumb"><b id="ausgabe-nav-title"></b></span>
     </div>
     <div class="toggle-bar" id="toggle-bar">
       <button class="toggle-btn active" id="tab-wording" type="button">Wording</button>
-      <button class="toggle-btn" id="tab-zustaendig" type="button">Zust&auml;ndigkeit</button>
+      <button class="toggle-btn" id="tab-zustaendig" type="button">Zuständigkeit</button>
       <button class="toggle-btn" id="tab-kontakt" type="button">Kontakt</button>
     </div>
     <div id="ausgabe-content"></div>
@@ -130,19 +204,19 @@
   <div id="screen-links" class="screen">
     <div class="grf-bar">
       <button class="grf-back" id="back-links" type="button">&larr; Themen</button>
-      <span class="grf-crumb"><b>Links &amp; Merkbl&auml;tter</b></span>
+      <span class="grf-crumb"><b>Links &amp; Merkblätter</b></span>
     </div>
     <div id="links-content"></div>
   </div>
  </div>
-</section>
+</div>
 
 <script>
 
 // ── STATE ──────────────────────────────────────────────────────────────────
 let state = { thema: null, stichwort: null, tab: 'wording', isInfo: false };
 
-// ── THEMEN (11 Kacheln) ────────────────────────────────────────────────────
+// ── THEMEN ────────────────────────────────────────────────────────────────
 const themen = [
   { name: "Anleitung & Grundsätze",                        icon: "📖", special: "info" },
   { name: "Links & Merkblätter",                            icon: "🔗", special: "links" },
@@ -160,27 +234,26 @@ const themen = [
 // Struktur: [thema, stichwort, wording, erstreaktion, fachlich, [[name,tel,mail],...]]
 const D = [
 
-  // ── ÜBERGREIFENDE KOMMUNIKATIONSGRUNDSÄTZE ────────────────────────────────
-   ["Entscheidungsbaum","Entscheidungsbaum: Was tue ich mit dieser Anfrage?",
+  ["Entscheidungsbaum","Entscheidungsbaum: Was tue ich mit dieser Anfrage?",
    "__ENTSCHEIDUNGSBAUM__",
    "Im Zweifel lieber kurz bestätigen: «Ich kläre das ab und melde mich.»",
    "Alle Projektpartner; FHGR koordiniert bei Bedarf",
    [["Arno Puorger (AJF)","+41 81 257 38 92","info@ajf.gr.ch"]]],
 
   ["Ausgangslage","Situation und Bedeutung der grossen Beutegreifer",
-   "Im Projekt «Tourismus und Beutegreifer» wird bewusst und konsequent der Begriff «grosse Beutegreifer» verwendet. Er ist zoologisch präziser als «Grossraubtier», indem er das natürliche Jagdverhalten dieser Tiere sachlich beschreibt. Der Begriff «Raubtier» wird im Volksmund häufig mit Gefahr und Aggression assoziiert, was für das natürliche Verhalten von Wolf, Bär und Luchs nicht per se zutreffend ist.<br><br>Die grossen Beutegreifer (Wolf, Bär, Luchs) waren früher alle in der Schweiz heimisch; ab 1904 hatte der Mensch alle drei Arten ausgerottet. Der Luchs wurde ab 1971 wieder aktiv in der Schweiz angesiedelt. Wölfe wandern auf natürlichem Wege seit 1995 wieder in die Schweiz ein; das erste Rudel hat sich 2012 am Calanda niedergelassen. Seit 2005 wandern auch Braunbären in unregelmässigen Abständen aus dem Trentino in die Schweiz ein. Bisher handelte es sich dabei ausschliesslich um junge Männchen auf der Suche nach Territorien und Weibchen.<br><br>Wolf, Luchs und Bär sind sehr wichtig für stabile und gut funktionierende Ökosysteme. Sie werden als Keystone Species (Schlüsselarten) bezeichnet; ihr Einfluss auf das Ökosystem ist überproportional hoch.<br><br>Die erneute Präsenz der grossen Beutegreifer löst bei vielen Menschen Verunsicherung oder Angst aus. Bär, Wolf und Luchs sind von Natur aus scheu und meiden den Menschen. Das richtige Verhalten von uns Menschen ist daher entscheidend.<br><br><strong>Kontakt AJF:</strong> Tel. +41 81 257 38 92, info@ajf.gr.ch<br><strong>Informationen:</strong> <a href='http://www.ajf.gr.ch' target='_blank' style='color:#4A5E3A;'>www.ajf.gr.ch</a> &nbsp;|&nbsp; <a href='https://www.kora.ch/de' target='_blank' style='color:#4A5E3A;'>kora.ch</a>",
+   "Im Projekt «Tourismus und Beutegreifer» wird bewusst und konsequent der Begriff «grosse Beutegreifer» verwendet. Er ist zoologisch präziser als «Grossraubtier», indem er das natürliche Jagdverhalten dieser Tiere sachlich beschreibt. Der Begriff «Raubtier» wird im Volksmund häufig mit Gefahr und Aggression assoziiert, was für das natürliche Verhalten von Wolf, Bär und Luchs nicht per se zutreffend ist.<br><br>Die grossen Beutegreifer (Wolf, Bär, Luchs) waren früher alle in der Schweiz heimisch; ab 1904 hatte der Mensch alle drei Arten ausgerottet. Der Luchs wurde ab 1971 wieder aktiv in der Schweiz angesiedelt. Wölfe wandern auf natürlichem Wege seit 1995 wieder in die Schweiz ein; das erste Rudel hat sich 2012 am Calanda niedergelassen. Seit 2005 wandern auch Braunbären in unregelmässigen Abständen aus dem Trentino in die Schweiz ein. Bisher handelte es sich dabei ausschliesslich um junge Männchen auf der Suche nach Territorien und Weibchen.<br><br>Wolf, Luchs und Bär sind sehr wichtig für stabile und gut funktionierende Ökosysteme. Sie werden als Keystone Species (Schlüsselarten) bezeichnet; ihr Einfluss auf das Ökosystem ist überproportional hoch.<br><br>Die erneute Präsenz der grossen Beutegreifer löst bei vielen Menschen Verunsicherung oder Angst aus. Bär, Wolf und Luchs sind von Natur aus scheu und meiden den Menschen. Das richtige Verhalten von uns Menschen ist daher entscheidend.<br><br><strong>Kontakt AJF:</strong> Tel. +41 81 257 38 92, info@ajf.gr.ch<br><strong>Informationen:</strong> <a href='http://www.ajf.gr.ch' target='_blank' rel='noopener'>www.ajf.gr.ch</a> &nbsp;|&nbsp; <a href='https://www.kora.ch/de' target='_blank' rel='noopener'>kora.ch</a>",
    "Angesprochene Person (Arosa T., TESSVM, Pärke).",
    "AJF (Arno Puorger); KORA",
    [["Arno Puorger (AJF)","+41 81 257 38 92","info@ajf.gr.ch"]]],
 
   ["Ausgangslage","Zum Projekt «Rückkehr grosse Beutegreifer und Tourismus»",
-   "Das Projekt «Rückkehr grosse Beutegreifer und Tourismus» wird vom Institut für Tourismus und Freizeit (ITF) der Fachhochschule Graubünden (FHGR) in Zusammenarbeit mit Arosa Tourismus, Biosfera Val Müstair, Naturpark Beverin, Parc Ela, Schweizerischer Nationalpark und der Destination Tourismus Engadin Scuol Samnaun Val Müstair (TESSVM) umgesetzt und von Innotour finanziert. Das Projekt zielt darauf ab, die Koexistenz von grossen Beutegreifern wie Wolf, Bär und Luchs und dem Menschen zu fördern und widmet sich im Speziellen der Frage, wie der Tourismus mit den grossen Beutegreifern umgehen kann und soll.<br><br>Ziele sind:<ul><li>Bewusstseinsbildung bei den Gästen, faktenbasiertes Vermitteln von Wissen zu den grossen Beutegreifern und zu den Herdenschutzmassnahmen.</li><li>Sowohl bei Einheimischen wie bei Gästen Verständnis für die Pro- und Contra-Positionen schaffen und die Wertschätzung für den Beitrag des Tourismus zur Regionalentwicklung stärken.</li><li>Anpassungsbedarf bestehender touristischer Angebote und Infrastruktur prüfen (z.B. bärensichere Abfalleimer).</li><li>Erstellung von Potentialanalysen für touristische Produkte zum Thema grosse Beutegreifer.</li><li>Entwicklung und Testung potenzieller touristischer Produkte, die spürbaren Mehrwert für die Betroffenen schaffen.</li></ul><strong>Mehr Informationen:</strong> <a href='https://beutegreifer.fhgr.ch/' target='_blank' style='color:#4A5E3A;'>beutegreifer.fhgr.ch</a>",
+   "Das Projekt «Rückkehr grosse Beutegreifer und Tourismus» wird vom Institut für Tourismus und Freizeit (ITF) der Fachhochschule Graubünden (FHGR) in Zusammenarbeit mit Arosa Tourismus, Biosfera Val Müstair, Naturpark Beverin, Parc Ela, Schweizerischer Nationalpark und der Destination Tourismus Engadin Scuol Samnaun Val Müstair (TESSVM) umgesetzt und von Innotour finanziert. Das Projekt zielt darauf ab, die Koexistenz von grossen Beutegreifern wie Wolf, Bär und Luchs und dem Menschen zu fördern und widmet sich im Speziellen der Frage, wie der Tourismus mit den grossen Beutegreifern umgehen kann und soll.<br><br>Ziele sind:<ul><li>Bewusstseinsbildung bei den Gästen, faktenbasiertes Vermitteln von Wissen zu den grossen Beutegreifern und zu den Herdenschutzmassnahmen.</li><li>Sowohl bei Einheimischen wie bei Gästen Verständnis für die Pro- und Contra-Positionen schaffen und die Wertschätzung für den Beitrag des Tourismus zur Regionalentwicklung stärken.</li><li>Anpassungsbedarf bestehender touristischer Angebote und Infrastruktur prüfen (z.B. bärensichere Abfalleimer).</li><li>Erstellung von Potentialanalysen für touristische Produkte zum Thema grosse Beutegreifer.</li><li>Entwicklung und Testung potenzieller touristischer Produkte, die spürbaren Mehrwert für die Betroffenen schaffen.</li></ul><strong>Mehr Informationen:</strong> <a href='https://beutegreifer.fhgr.ch/' target='_blank' rel='noopener'>beutegreifer.fhgr.ch</a>",
    "FHGR als Koordination; Arosa Tourismus als Leadpartner.",
    "FHGR (Christian Baumgartner)",
    [["Christian Baumgartner (FHGR)","+41 81 286 38 40","christian.baumgartner@fhgr.ch"]]],
 
   ["Wolf","Grundsätzliches zum Wolf",
-   "Wölfe, die in freier Wildbahn aufwachsen und dort leben, sind uns Menschen nach allen Erkenntnissen, die man weltweit gesammelt hat, nicht grundsätzlich gefährlich. Wölfe meiden den Kontakt zu Menschen. Gefährlich kann es werden, wenn sich Wölfe an den Menschen gewöhnen und seine Anwesenheit gar mit Futter in Verbindung bringen. Gefütterte Wölfe können so lernen, um Futter zu betteln. Darüber hinaus sollte man Wölfe – auch Welpen – nie verfolgen, um sie zu beobachten oder zu fotografieren. Das Gebiet, in dem sich die Wurfhöhle befindet, sollte gemieden werden. Wölfe können aggressiv reagieren, wenn sie krank (z.B. Tollwut) oder verletzt sind, angefüttert wurden oder wenn man sie in die Enge treibt. In der Schweiz gibt es zurzeit keine Tollwut.<br><br><strong>Verhaltensauffällige Wölfe:</strong> Wölfe gelten als verhaltensauffällig, wenn sie sich gezielt mehrfach Menschen nähern oder sich eindeutig aggressiv verhalten. Dieses Verhalten ist meist eine Folge von bewusster oder unbewusster Fütterung der Wölfe oder bei vorliegender Krankheit, insbesondere Tollwut.<br><br><strong>Merkblätter (AJF):</strong><ul><li><a href='https://www.gr.ch/DE/institutionen/verwaltung/diem/ajf/grossraubtiere/Documents/Merkbl%c3%a4tter%2c%20Publikationen%2c%20Projekte/Merkblatt%20-%20Wolf_Verhaltensregeln.pdf' target='_blank' style='color:#4A5E3A;'>Umgang mit dem Wolf</a></li><li><a href='https://www.gr.ch/DE/institutionen/verwaltung/diem/ajf/grossraubtiere/Documents/Merkbl%c3%a4tter%2c%20Publikationen%2c%20Projekte/Merkblatt%20-%20Leben%20im%20Wolfsgebiet.pdf' target='_blank' style='color:#4A5E3A;'>Leben im Wolfsgebiet</a></li><li><a href='https://www.gr.ch/DE/institutionen/verwaltung/diem/ajf/grossraubtiere/Documents/Merkbl%c3%a4tter%2c%20Publikationen%2c%20Projekte/Merkblatt%20-%20Unterwegs%20im%20Wolfsgebiet.pdf' target='_blank' style='color:#4A5E3A;'>Unterwegs im Wolfsgebiet</a></li><li><a href='https://www.gr.ch/DE/institutionen/verwaltung/diem/ajf/grossraubtiere/Documents/Merkbl%c3%a4tter%2c%20Publikationen%2c%20Projekte/Merkblatt%20-%20Jagen%20im%20Wolfsgebiet.pdf' target='_blank' style='color:#4A5E3A;'>Jagen im Wolfsgebiet</a></li><li><a href='https://www.bafu.admin.ch/de/wolf' target='_blank' style='color:#4A5E3A;'>Informationen zum Thema Wolf beim BAFU</a></li></ul>",
+   "Wölfe, die in freier Wildbahn aufwachsen und dort leben, sind uns Menschen nach allen Erkenntnissen, die man weltweit gesammelt hat, nicht grundsätzlich gefährlich. Wölfe meiden den Kontakt zu Menschen. Gefährlich kann es werden, wenn sich Wölfe an den Menschen gewöhnen und seine Anwesenheit gar mit Futter in Verbindung bringen. Gefütterte Wölfe können so lernen, um Futter zu betteln. Darüber hinaus sollte man Wölfe – auch Welpen – nie verfolgen, um sie zu beobachten oder zu fotografieren. Das Gebiet, in dem sich die Wurfhöhle befindet, sollte gemieden werden. Wölfe können aggressiv reagieren, wenn sie krank (z.B. Tollwut) oder verletzt sind, angefüttert wurden oder wenn man sie in die Enge treibt. In der Schweiz gibt es zurzeit keine Tollwut.<br><br><strong>Verhaltensauffällige Wölfe:</strong> Wölfe gelten als verhaltensauffällig, wenn sie sich gezielt mehrfach Menschen nähern oder sich eindeutig aggressiv verhalten. Dieses Verhalten ist meist eine Folge von bewusster oder unbewusster Fütterung der Wölfe oder bei vorliegender Krankheit, insbesondere Tollwut.<br><br><strong>Merkblätter (AJF):</strong><ul><li><a href='https://www.gr.ch/DE/institutionen/verwaltung/diem/ajf/grossraubtiere/Documents/Merkbl%c3%a4tter%2c%20Publikationen%2c%20Projekte/Merkblatt%20-%20Wolf_Verhaltensregeln.pdf' target='_blank' rel='noopener'>Umgang mit dem Wolf</a></li><li><a href='https://www.gr.ch/DE/institutionen/verwaltung/diem/ajf/grossraubtiere/Documents/Merkbl%c3%a4tter%2c%20Publikationen%2c%20Projekte/Merkblatt%20-%20Leben%20im%20Wolfsgebiet.pdf' target='_blank' rel='noopener'>Leben im Wolfsgebiet</a></li><li><a href='https://www.gr.ch/DE/institutionen/verwaltung/diem/ajf/grossraubtiere/Documents/Merkbl%c3%a4tter%2c%20Publikationen%2c%20Projekte/Merkblatt%20-%20Unterwegs%20im%20Wolfsgebiet.pdf' target='_blank' rel='noopener'>Unterwegs im Wolfsgebiet</a></li><li><a href='https://www.gr.ch/DE/institutionen/verwaltung/diem/ajf/grossraubtiere/Documents/Merkbl%c3%a4tter%2c%20Publikationen%2c%20Projekte/Merkblatt%20-%20Jagen%20im%20Wolfsgebiet.pdf' target='_blank' rel='noopener'>Jagen im Wolfsgebiet</a></li><li><a href='https://www.bafu.admin.ch/de/wolf' target='_blank' rel='noopener'>Informationen zum Thema Wolf beim BAFU</a></li></ul>",
    "Angesprochene Person (Arosa T., TESSVM, Pärke).",
    "AJF (Arno Puorger)",
    [["Arno Puorger (AJF)","+41 81 257 38 92","info@ajf.gr.ch"]]],
@@ -190,14 +263,14 @@ const D = [
    "Angesprochene Person (Arosa T., TESSVM, Pärke).",
    "AJF (Arno Puorger); Wildhut",
    [["Arno Puorger (AJF)","+41 81 257 38 92","info@ajf.gr.ch"],
-    ["Amt f\u00fcr Jagd und Fischerei Graub\u00fcnden (AJF) / Wildhut","+41 81 257 38 92","info@ajf.gr.ch"]]],
+    ["Amt für Jagd und Fischerei Graubünden (AJF) / Wildhut","+41 81 257 38 92","info@ajf.gr.ch"]]],
 
   ["Wolf","Verhaltensregeln bei Begegnungen mit Wölfen",
    "Grundsätzliche Verhaltensregeln bei Begegnungen mit Wölfen:<ul><li>Bleiben Sie ruhig stehen und versuchen Sie die Situation zu erfassen. Bemerkt sie der Wolf, zieht er sich in aller Regel zurück oder flieht.</li><li>Wenn der Wolf nicht umgehend flieht, machen Sie mit bestimmter Stimme auf sich aufmerksam.</li><li>Ziehen Sie sich langsam zurück, der Wolf wird sie beobachten oder flüchtet direkt.</li><li>Versuchen Sie auf keinen Fall, sich dem Wolf zu nähern, auch nicht um das Tier zu fotografieren.</li><li>Verfolgen Sie niemals einen Wolf.</li><li>Melden Sie Wolfsbeobachtungen im Siedlungsgebiet und alle verhaltensauffälligen Wölfe der Wildhut! Wölfe gelten als verhaltensauffällig, wenn sie sich gezielt mehrfach Menschen nähern oder sich eindeutig aggressiv verhalten. Dieses Verhalten ist meist eine Folge von bewusster oder unbewusster Fütterung der Wölfe oder bei vorliegender Krankheit, insbesondere Tollwut.</li></ul>",
    "Angesprochene Person (Arosa T., TESSVM, Pärke). Bei verhaltensauffälligem Wolf: direkte Weiterleitung an Wildhut und AJF.",
    "AJF (Arno Puorger); Wildhut",
    [["Arno Puorger (AJF)","+41 81 257 38 92","info@ajf.gr.ch"],
-    ["Amt f\u00fcr Jagd und Fischerei Graub\u00fcnden (AJF) / Wildhut","+41 81 257 38 92","info@ajf.gr.ch"]]],
+    ["Amt für Jagd und Fischerei Graubünden (AJF) / Wildhut","+41 81 257 38 92","info@ajf.gr.ch"]]],
 
   ["Wolf","Wie schützen wir die Kinder vor dem Wolf?",
    "Die Wahrscheinlichkeit für Begegnungen mit Wölfen ist sehr klein, die Tiere sind scheu und meiden Menschen. Unser Verhalten ist entscheidend, damit das so bleibt. Wir sind in Verantwortung, Kinder über die Situation aufzuklären und damit Angst zu nehmen, ihre Faszination für dieses spannende Tier zu wecken und sie zu lehren, wie sie sich bei Wolfsbegegnungen verhalten sollen.",
@@ -222,7 +295,7 @@ const D = [
    "Angesprochene Person (Arosa T., TESSVM, Pärke). Direkte Weiterleitung an Wildhut und AJF.",
    "AJF (Arno Puorger); Wildhut",
    [["Arno Puorger (AJF)","+41 81 257 38 92","info@ajf.gr.ch"],
-    ["Amt f\u00fcr Jagd und Fischerei Graub\u00fcnden (AJF) / Wildhut","+41 81 257 38 92","info@ajf.gr.ch"]]],
+    ["Amt für Jagd und Fischerei Graubünden (AJF) / Wildhut","+41 81 257 38 92","info@ajf.gr.ch"]]],
 
   ["Wolf","Wie gross ist die Gefahr für Menschen? Sind Wölfe aggressiv?",
    "Wölfe sind von Natur aus scheu, meiden Menschen und bedeuten grundsätzlich keine Gefahr für ihn. Wichtig ist aber, die Verhaltensregeln einzuhalten (Distanz halten, nicht verfolgen, sich der Wurfhöhle nicht nähern, nicht füttern etc.).",
@@ -241,7 +314,7 @@ const D = [
    "Angesprochene Person (Arosa T., TESSVM, Pärke). Sichtungen in Siedlungsnähe: Weiterleitung an Wildhut.",
    "AJF (Arno Puorger); Wildhut",
    [["Arno Puorger (AJF)","+41 81 257 38 92","info@ajf.gr.ch"],
-    ["Amt f\u00fcr Jagd und Fischerei Graub\u00fcnden (AJF) / Wildhut","+41 81 257 38 92","info@ajf.gr.ch"]]],
+    ["Amt für Jagd und Fischerei Graubünden (AJF) / Wildhut","+41 81 257 38 92","info@ajf.gr.ch"]]],
 
   ["Wolf","Wo kann ich am ehesten auf einen Wolf treffen?",
    "Ein Treffen ist sehr unwahrscheinlich und muss dem Zufall überlassen werden. Der Wolf ist ein Wildtier, das wie alle Wildtiere in Ruhe gelassen werden soll. Ein gezieltes Nachstellen respektiert dies nicht und könnte auch dazu führen, dass man ein Tier bedrängt, zu nahe an seine Jungtiere kommt und es sich im Notfall verteidigen wird. Abstand halten und das Tier respektieren.",
@@ -250,7 +323,7 @@ const D = [
    [["Arno Puorger (AJF)","+41 81 257 38 92","info@ajf.gr.ch"]]],
 
   ["Bär","Grundsätzliches zum Bären",
-   "Seit 2005 werden auch in Graubünden wieder einzelne Braunbären beobachtet, nachdem dies über hundert Jahre lang nicht mehr der Fall war. Die Tiere stammen aus dem Trentino, aus einer Bärenpopulation, die in den letzten Jahren immer grösser geworden ist. Wenn Bären nur wenig Scheu vor dem Menschen zeigen, ist besondere Vorsicht angezeigt. Grundsätzlich sind Bären Beutegreifer, zu denen man Distanz halten soll. Die Wahrscheinlichkeit, auf einen Bären zu treffen, ist sehr gering.<br><br><strong>Merkblätter (AJF):</strong><ul></a></li><li><a href='https://www.gr.ch/DE/institutionen/verwaltung/diem/ajf/grossraubtiere/Documents/Merkbl%c3%a4tter%2c%20Publikationen%2c%20Projekte/Merkblatt%20-%20Zelten%20im%20B%c3%a4rengebiet.pdf' target='_blank' style='color:#4A5E3A;'>Zelten im Bärengebiet</a></li><li><a href='https://www.gr.ch/DE/institutionen/verwaltung/diem/ajf/grossraubtiere/Documents/Merkbl%c3%a4tter%2c%20Publikationen%2c%20Projekte/Merkblatt%20-%20Jagen%20im%20B%c3%a4rengebiet.pdf' target='_blank' style='color:#4A5E3A;'>Jagen im Bärengebiet</a></li><li><a href='https://www.bafu.admin.ch/bafu/de/home/themen/biodiversitaet/publikationen-studien/publikationen/konzept-bar--managementplan-fuer-den-braunbaeren-in-der-schweiz.html' target='_blank' style='color:#4A5E3A;'>Konzept Bär BAFU</a></li></ul><br>Der Bund hat seit dem Auftauchen des ersten Bären ein Konzept erarbeitet, das sich mit dem Management dieser Tiere befasst. Zeigen Bären problematische Verhaltensweisen, so werden sie in einer ersten Stufe als Problembären eingestuft, besendert, vergrämt und weiter beobachtet. Tritt das problematische Verhalten weiterhin und verstärkt auf, so werden sie als Risikobären eingestuft und zum Abschuss freigegeben. In der Schweiz wurden in den letzten 20 Jahren auch zwei Bären geschossen, die unerwünschtes Verhalten gezeigt hatten und als Risikobären eingestuft wurden.",
+   "Seit 2005 werden auch in Graubünden wieder einzelne Braunbären beobachtet, nachdem dies über hundert Jahre lang nicht mehr der Fall war. Die Tiere stammen aus dem Trentino, aus einer Bärenpopulation, die in den letzten Jahren immer grösser geworden ist. Wenn Bären nur wenig Scheu vor dem Menschen zeigen, ist besondere Vorsicht angezeigt. Grundsätzlich sind Bären Beutegreifer, zu denen man Distanz halten soll. Die Wahrscheinlichkeit, auf einen Bären zu treffen, ist sehr gering.<br><br><strong>Merkblätter (AJF):</strong><ul><li><a href='https://www.gr.ch/DE/institutionen/verwaltung/diem/ajf/grossraubtiere/Documents/Merkbl%c3%a4tter%2c%20Publikationen%2c%20Projekte/Merkblatt%20-%20Zelten%20im%20B%c3%a4rengebiet.pdf' target='_blank' rel='noopener'>Zelten im Bärengebiet</a></li><li><a href='https://www.gr.ch/DE/institutionen/verwaltung/diem/ajf/grossraubtiere/Documents/Merkbl%c3%a4tter%2c%20Publikationen%2c%20Projekte/Merkblatt%20-%20Jagen%20im%20B%c3%a4rengebiet.pdf' target='_blank' rel='noopener'>Jagen im Bärengebiet</a></li><li><a href='https://www.bafu.admin.ch/bafu/de/home/themen/biodiversitaet/publikationen-studien/publikationen/konzept-bar--managementplan-fuer-den-braunbaeren-in-der-schweiz.html' target='_blank' rel='noopener'>Konzept Bär BAFU</a></li></ul><br>Der Bund hat seit dem Auftauchen des ersten Bären ein Konzept erarbeitet, das sich mit dem Management dieser Tiere befasst. Zeigen Bären problematische Verhaltensweisen, so werden sie in einer ersten Stufe als Problembären eingestuft, besendert, vergrämt und weiter beobachtet. Tritt das problematische Verhalten weiterhin und verstärkt auf, so werden sie als Risikobären eingestuft und zum Abschuss freigegeben. In der Schweiz wurden in den letzten 20 Jahren auch zwei Bären geschossen, die unerwünschtes Verhalten gezeigt hatten und als Risikobären eingestuft wurden.",
    "Angesprochene Person (Arosa T., TESSVM, Pärke).",
    "AJF (Arno Puorger); BAFU",
    [["Arno Puorger (AJF)","+41 81 257 38 92","info@ajf.gr.ch"]]],
@@ -266,7 +339,7 @@ const D = [
    "Angesprochene Person (Arosa T., TESSVM, Pärke). Sichtungen sofort melden.",
    "AJF (Arno Puorger); Wildhut",
    [["Arno Puorger (AJF)","+41 81 257 38 92","info@ajf.gr.ch"],
-    ["Amt f\u00fcr Jagd und Fischerei Graub\u00fcnden (AJF) / Wildhut","+41 81 257 38 92","info@ajf.gr.ch"]]],
+    ["Amt für Jagd und Fischerei Graubünden (AJF) / Wildhut","+41 81 257 38 92","info@ajf.gr.ch"]]],
 
   ["Bär","Keine Abfälle liegen lassen / Fütterungsverbot",
    "Haben Bären erst einmal den Menschen als Nahrungslieferanten erkannt, ist es aus mit der Scheu. Er wird dann gezielt die Nähe des Menschen aufsuchen und damit gefährliche Situationen heraufbeschwören. Darum gilt:<ul><li>Füttern Sie nie einen Bären.</li><li>Lassen Sie auf Ihrer Wanderung keinen Müll und keine Essensreste liegen.</li><li>Auch Komposthaufen und Kanister mit Rapsöl sind mögliche Futterquellen für Bären.</li></ul>",
@@ -279,10 +352,10 @@ const D = [
    "Angesprochene Person (Arosa T., TESSVM, Pärke). Direkte Weiterleitung an Wildhut.",
    "AJF (Arno Puorger); Wildhut",
    [["Arno Puorger (AJF)","+41 81 257 38 92","info@ajf.gr.ch"],
-    ["Amt f\u00fcr Jagd und Fischerei Graub\u00fcnden (AJF) / Wildhut","+41 81 257 38 92","info@ajf.gr.ch"]]],
+    ["Amt für Jagd und Fischerei Graubünden (AJF) / Wildhut","+41 81 257 38 92","info@ajf.gr.ch"]]],
 
   ["Luchs","Grundsätzliches zum Luchs",
-   "Als einziger der grossen Beutegreifer wurde der Luchs aktiv wiederangesiedelt in der Schweiz; ab 1971 wurden mehrere Tiere ausgesetzt. Der Bestand in der Schweiz im Jahr 2023/24 betrug 343 selbständige Luchse. Diese leben in zwei getrennten Populationen im Jura und in den Alpen. Die Alpenpopulation der Schweiz stellt auch die grösste Luchspopulation im gesamten Alpenraum dar. Unser Land trägt daher europaweit eine besondere Verantwortung für die Erhaltung und den Schutz des Luchses.<br><br>Luchse sind sehr scheue Tiere, die selten gesehen werden. Für den Menschen stellen sie keine Gefahr dar. Konflikte ergeben sich in einzelnen Fällen aus Übergriffen auf Nutztiere und der Konkurrenz zu Jägern um Rehe und Gämsen. Im Schnitt werden pro Jahr ca. 50 gerissene Nutztiere als Luchsriss anerkannt und entschädigt. Das Konzept Luchs Schweiz des BAFU legt fest, dass Schäden an Nutztieren und landwirtschaftlichen Kulturen durch Luchse gemeinsam vom Bund (80%) und dem jeweiligen Kanton (20%) entschädigt werden.<br><br><strong>Informationen:</strong><ul><li><a href='https://www.kora.ch/de/arten/luchs/portrait' target='_blank' style='color:#4A5E3A;'>kora.ch – Luchs Portrait</a></li><li><a href='https://www.kora.ch/de/arten/luchs/verbreitung' target='_blank' style='color:#4A5E3A;'>kora.ch – Verbreitung</a></li><li><a href='https://www.bafu.admin.ch/de/luchs' target='_blank' style='color:#4A5E3A;'>BAFU zum Thema Luchs</a></li></ul>",
+   "Als einziger der grossen Beutegreifer wurde der Luchs aktiv wiederangesiedelt in der Schweiz; ab 1971 wurden mehrere Tiere ausgesetzt. Der Bestand in der Schweiz im Jahr 2023/24 betrug 343 selbständige Luchse. Diese leben in zwei getrennten Populationen im Jura und in den Alpen. Die Alpenpopulation der Schweiz stellt auch die grösste Luchspopulation im gesamten Alpenraum dar. Unser Land trägt daher europaweit eine besondere Verantwortung für die Erhaltung und den Schutz des Luchses.<br><br>Luchse sind sehr scheue Tiere, die selten gesehen werden. Für den Menschen stellen sie keine Gefahr dar. Konflikte ergeben sich in einzelnen Fällen aus Übergriffen auf Nutztiere und der Konkurrenz zu Jägern um Rehe und Gämsen. Im Schnitt werden pro Jahr ca. 50 gerissene Nutztiere als Luchsriss anerkannt und entschädigt. Das Konzept Luchs Schweiz des BAFU legt fest, dass Schäden an Nutztieren und landwirtschaftlichen Kulturen durch Luchse gemeinsam vom Bund (80%) und dem jeweiligen Kanton (20%) entschädigt werden.<br><br><strong>Informationen:</strong><ul><li><a href='https://www.kora.ch/de/arten/luchs/portrait' target='_blank' rel='noopener'>kora.ch – Luchs Portrait</a></li><li><a href='https://www.kora.ch/de/arten/luchs/verbreitung' target='_blank' rel='noopener'>kora.ch – Verbreitung</a></li><li><a href='https://www.bafu.admin.ch/de/luchs' target='_blank' rel='noopener'>BAFU zum Thema Luchs</a></li></ul>",
    "Angesprochene Person (Arosa T., TESSVM, Pärke).",
    "AJF (Arno Puorger); KORA",
    [["Arno Puorger (AJF)","+41 81 257 38 92","info@ajf.gr.ch"]]],
@@ -324,7 +397,7 @@ const D = [
    [["Arno Puorger (AJF)","+41 81 257 38 92","info@ajf.gr.ch"]]],
 
   ["Schutz von Nutztieren und Landwirtschaft","Wolf, Bär und Nutztiere – Grundsätzliches",
-   "Der Wolf ist überwiegend ein Fleischfresser. Zu seiner Hauptbeute gehören Schalenwild (Rothirsch, Reh, Wildschwein, Gämse) sowie kleinere Wildtiere (Dachse, Hasen, Füchse etc.). Auch Nutztiere wie Schafe und Ziegen werden gerissen, wenn sie nicht ausreichend geschützt sind. Mit geeigneten Schutzmassnahmen können Herden vor Wölfen geschützt und Übergriffe weitgehend vermieden werden.<br><br>Der Bär ist ein Allesfresser, der sich grossmehrheitlich vegetarisch ernährt. Er nutzt Nahrung, die für ihn leicht zugänglich ist. Risse an Nutztieren sind selten. Das Konzept Bär Schweiz legt fest, dass Schäden an Nutztieren und landwirtschaftlichen Kulturen durch Bären gemeinsam vom Bund (80%) und dem jeweiligen Kanton (20%) entschädigt werden.<br><br><strong>Kontakt Prävention:</strong> Plantahof, Kantonsstrasse 17, 7302 Landquart, Tel. +41 81 257 60 00, info@plantahof.gr.ch, www.plantahof.ch<br><strong>Kontakt Schäden:</strong> Amt für Jagd und Fischerei Graubünden, Ringstrasse 10, 7001 Chur, Tel. +41 81 257 38 92, info@ajf.gr.ch</a><br><ul><li><a href='https://www.bafu.admin.ch/bafu/de/home/themen/biodiversitaet/publikationen-studien/publikationen/konzept-bar--managementplan-fuer-den-braunbaeren-in-der-schweiz.html' target='_blank' style='color:#4A5E3A;'>Konzept Bär BAFU</a></li></ul>",
+   "Der Wolf ist überwiegend ein Fleischfresser. Zu seiner Hauptbeute gehören Schalenwild (Rothirsch, Reh, Wildschwein, Gämse) sowie kleinere Wildtiere (Dachse, Hasen, Füchse etc.). Auch Nutztiere wie Schafe und Ziegen werden gerissen, wenn sie nicht ausreichend geschützt sind. Mit geeigneten Schutzmassnahmen können Herden vor Wölfen geschützt und Übergriffe weitgehend vermieden werden.<br><br>Der Bär ist ein Allesfresser, der sich grossmehrheitlich vegetarisch ernährt. Er nutzt Nahrung, die für ihn leicht zugänglich ist. Risse an Nutztieren sind selten. Das Konzept Bär Schweiz legt fest, dass Schäden an Nutztieren und landwirtschaftlichen Kulturen durch Bären gemeinsam vom Bund (80%) und dem jeweiligen Kanton (20%) entschädigt werden.<br><br><strong>Kontakt Prävention:</strong> Plantahof, Kantonsstrasse 17, 7302 Landquart, Tel. +41 81 257 60 00, info@plantahof.gr.ch, www.plantahof.ch<br><strong>Kontakt Schäden:</strong> Amt für Jagd und Fischerei Graubünden, Ringstrasse 10, 7001 Chur, Tel. +41 81 257 38 92, info@ajf.gr.ch<br><ul><li><a href='https://www.bafu.admin.ch/bafu/de/home/themen/biodiversitaet/publikationen-studien/publikationen/konzept-bar--managementplan-fuer-den-braunbaeren-in-der-schweiz.html' target='_blank' rel='noopener'>Konzept Bär BAFU</a></li></ul>",
    "Angesprochene Person (Arosa T., TESSVM, Pärke). Weiterleitung an Plantahof (Prävention) bzw. AJF (Schäden).",
    "AJF (Arno Puorger); Plantahof GR (Jan Boner)",
    [["Arno Puorger (AJF)","+41 81 257 38 92","info@ajf.gr.ch"],
@@ -336,10 +409,10 @@ const D = [
    "AJF (Arno Puorger); Plantahof GR (Jan Boner); Wildhut",
    [["Arno Puorger (AJF)","+41 81 257 38 92","info@ajf.gr.ch"],
     ["Jan Boner (Plantahof GR)","+41 81 257 60 00","info@plantahof.gr.ch"],
-    ["Amt f\u00fcr Jagd und Fischerei Graub\u00fcnden (AJF) / Wildhut","+41 81 257 38 92","info@ajf.gr.ch"]]],
+    ["Amt für Jagd und Fischerei Graubünden (AJF) / Wildhut","+41 81 257 38 92","info@ajf.gr.ch"]]],
 
   ["Schutz von Nutztieren und Landwirtschaft","Landwirtschaftsbetriebe im Wolfsgebiet",
-   "Landwirtschaftsbetriebe im Wolfsgebiet sind verpflichtet, zumutbare Schutzmassnahmen zu ergreifen. Dazu gehören elektrifizierte Zäune sowie der längerfristige Aufbau von Herdenschutzhunden. Die Zuständigkeit für Beratung und Umsetzung liegt in Graubünden beim Plantahof als kantonaler Herdenschutz-Fachstelle.<br><br>Tourismuspersonal muss diese Massnahmen nicht im Detail kennen. Wichtig ist das Grundverständnis, dass Schutzmassnahmen Zeit und Ressourcen erfordern und trotzdem nicht jeden Riss verhindern können.<br><br>Bei Fragen von Gästen zum Thema Herdenschutz genügt der Hinweis auf die zuständigen Stellen:<ul></li><li><a href='https://www.plantahof.ch' target='_blank' style='color:#4A5E3A;'>Herdenschutzberatung Graubünden (Plantahof) – plantahof.ch, Tel. +41 81 257 60 00</a></li><li><a href='https://www.herdenschutzschweiz.ch' target='_blank' style='color:#4A5E3A;'>Herdenschutz Schweiz (AGRIDEA) – herdenschutzschweiz.ch</a></li></ul>",
+   "Landwirtschaftsbetriebe im Wolfsgebiet sind verpflichtet, zumutbare Schutzmassnahmen zu ergreifen. Dazu gehören elektrifizierte Zäune sowie der längerfristige Aufbau von Herdenschutzhunden. Die Zuständigkeit für Beratung und Umsetzung liegt in Graubünden beim Plantahof als kantonaler Herdenschutz-Fachstelle.<br><br>Tourismuspersonal muss diese Massnahmen nicht im Detail kennen. Wichtig ist das Grundverständnis, dass Schutzmassnahmen Zeit und Ressourcen erfordern und trotzdem nicht jeden Riss verhindern können.<br><br>Bei Fragen von Gästen zum Thema Herdenschutz genügt der Hinweis auf die zuständigen Stellen:<ul><li><a href='https://www.plantahof.ch' target='_blank' rel='noopener'>Herdenschutzberatung Graubünden (Plantahof) – plantahof.ch, Tel. +41 81 257 60 00</a></li><li><a href='https://www.herdenschutzschweiz.ch' target='_blank' rel='noopener'>Herdenschutz Schweiz (AGRIDEA) – herdenschutzschweiz.ch</a></li></ul>",
    "Angesprochene Person (Arosa T., TESSVM, Pärke). Weiterleitung an Plantahof.",
    "Plantahof GR (Jan Boner); AJF (Arno Puorger)",
    [["Jan Boner (Plantahof GR)","+41 81 257 60 00","info@plantahof.gr.ch"],
@@ -347,26 +420,26 @@ const D = [
     ["Arno Puorger (AJF)","+41 81 257 38 92","info@ajf.gr.ch"]]],
 
   ["Unterwegs mit Herdenschutzhunden","Herdenschutzhunde – Grundsätzliches",
-   "Herdenschutzhunde können Nutztieren effizienten Schutz vor Wölfen und Bären bieten. Sie schützen ihre Herden selbständig Tag und Nacht und bei jedem Wetter.<br><br>Unbekanntes und Störungen werden von den Hunden misstrauisch begutachtet und als potenzielle Gefahren von der Herde ferngehalten. Dazu gehören auch Wandernde. Insbesondere in der Dämmerung und nachts, bei schlechtem Wetter sowie wenn die Herde in Bewegung ist, sind die Hunde sehr wachsam.<br><br>Normalerweise sind Herdenschutzhunde Menschen gegenüber ungefährlich. Respektieren wir aber bei einer Annäherung an eine geschützte Herde die allfälligen Warnsignale der Hunde nicht und passen unser Verhalten nicht an, so können sie auch zuschnappen.<br><br>Bitte bringen Sie beim Wandern in Gebieten mit arbeitenden Schutzhunden Ihren eigenen Hund nicht mit. Unbekannte Hunde provozieren bei den Herdenschutzhunden ein starkes Abwehrverhalten!<br><br>Mit Respekt und Toleranz für die Arbeit der Herdenschutzhunde und angepasster Verhaltensweise können Sie unnötige Zwischenfälle vermeiden und den Hunden die Arbeit erleichtern.<br><em>(Quelle: agridea, <a href='https://www.herdenschutzschweiz.ch/' target='_blank' style='color:#4A5E3A;'>herdenschutzschweiz.ch</a>)</em>",
+   "Herdenschutzhunde können Nutztieren effizienten Schutz vor Wölfen und Bären bieten. Sie schützen ihre Herden selbständig Tag und Nacht und bei jedem Wetter.<br><br>Unbekanntes und Störungen werden von den Hunden misstrauisch begutachtet und als potenzielle Gefahren von der Herde ferngehalten. Dazu gehören auch Wandernde. Insbesondere in der Dämmerung und nachts, bei schlechtem Wetter sowie wenn die Herde in Bewegung ist, sind die Hunde sehr wachsam.<br><br>Normalerweise sind Herdenschutzhunde Menschen gegenüber ungefährlich. Respektieren wir aber bei einer Annäherung an eine geschützte Herde die allfälligen Warnsignale der Hunde nicht und passen unser Verhalten nicht an, so können sie auch zuschnappen.<br><br>Bitte bringen Sie beim Wandern in Gebieten mit arbeitenden Schutzhunden Ihren eigenen Hund nicht mit. Unbekannte Hunde provozieren bei den Herdenschutzhunden ein starkes Abwehrverhalten!<br><br>Mit Respekt und Toleranz für die Arbeit der Herdenschutzhunde und angepasster Verhaltensweise können Sie unnötige Zwischenfälle vermeiden und den Hunden die Arbeit erleichtern.<br><em>(Quelle: agridea, <a href='https://www.herdenschutzschweiz.ch/' target='_blank' rel='noopener'>herdenschutzschweiz.ch</a>)</em>",
    "Angesprochene Person (Arosa T., TESSVM, Pärke).",
    "Plantahof GR (Jan Boner); agridea",
    [["Jan Boner (Plantahof GR)","+41 81 257 60 00","info@plantahof.gr.ch"]]],
 
   ["Unterwegs mit Herdenschutzhunden","Verhaltensregeln bei Begegnungen mit Herdenschutzhunden",
-   "Informieren Sie sich möglichst im Voraus, wo Herdenschutzhunde im Einsatz sind, und beachten Sie die Informationstafeln vor Ort.<br><br>Wenn Sie in ein Weidegebiet kommen, wo mit Herdenschutzhunden zu rechnen ist:<ul><li>Bleiben Sie ruhig und gehen Sie langsam.</li><li>Steigen Sie von Ihrem Bike und schieben Sie es.</li><li>Halten Sie möglichst Distanz zur Herde; Schafe, Ziegen oder Herdenschutzhunde nicht erschrecken oder aufscheuchen.</li><li>Wenn Sie keine Schutzhunde sehen, machen Sie durch lautes Reden auf sich aufmerksam.</li></ul>Wenn Herdenschutzhunde bellen, in Ihre Richtung rennen oder Ihnen den Weg versperren:<ul><li>Bleiben Sie ruhig stehen und geben Sie den Hunden Zeit, die Situation einzuschätzen. Schreien Sie die Herdenschutzhunde nicht an – dies wird sie provozieren.</li><li>Fühlen Sie sich von einem Herdenschutzhund bedrängt, vermeiden Sie Augenkontakt, aber bleiben ihm zugewandt.</li><li>Gehen Sie erst dann gemächlich weiter, wenn die Schutzhunde aufgehört haben zu bellen und Ihre Anwesenheit akzeptieren.</li></ul><br><em>(Quelle: agridea, <a href='https://www.herdenschutzschweiz.ch/' target='_blank' style='color:#4A5E3A;'>herdenschutzschweiz.ch</a>)</em>",
+   "Informieren Sie sich möglichst im Voraus, wo Herdenschutzhunde im Einsatz sind, und beachten Sie die Informationstafeln vor Ort.<br><br>Wenn Sie in ein Weidegebiet kommen, wo mit Herdenschutzhunden zu rechnen ist:<ul><li>Bleiben Sie ruhig und gehen Sie langsam.</li><li>Steigen Sie von Ihrem Bike und schieben Sie es.</li><li>Halten Sie möglichst Distanz zur Herde; Schafe, Ziegen oder Herdenschutzhunde nicht erschrecken oder aufscheuchen.</li><li>Wenn Sie keine Schutzhunde sehen, machen Sie durch lautes Reden auf sich aufmerksam.</li></ul>Wenn Herdenschutzhunde bellen, in Ihre Richtung rennen oder Ihnen den Weg versperren:<ul><li>Bleiben Sie ruhig stehen und geben Sie den Hunden Zeit, die Situation einzuschätzen. Schreien Sie die Herdenschutzhunde nicht an – dies wird sie provozieren.</li><li>Fühlen Sie sich von einem Herdenschutzhund bedrängt, vermeiden Sie Augenkontakt, aber bleiben ihm zugewandt.</li><li>Gehen Sie erst dann gemächlich weiter, wenn die Schutzhunde aufgehört haben zu bellen und Ihre Anwesenheit akzeptieren.</li></ul><br><em>(Quelle: agridea, <a href='https://www.herdenschutzschweiz.ch/' target='_blank' rel='noopener'>herdenschutzschweiz.ch</a>)</em>",
    "Angesprochene Person (Arosa T., TESSVM, Pärke).",
    "Plantahof GR (Jan Boner); agridea",
    [["Jan Boner (Plantahof GR)","+41 81 257 60 00","info@plantahof.gr.ch"],
     ["Sandro Michael (BBV)","+41 81 254 20 00","info@bbv-gr.ch"]]],
 
   ["Unterwegs mit Herdenschutzhunden","Im Zweifel umgehen oder umkehren",
-   "Wenn die Herdenschutzhunde sich nicht beruhigen:<ul><li>Obwohl Sie ruhig gewartet haben, vergrössern Sie den Abstand zur Herde.</li><li>Falls nötig, halten Sie die Hunde z.B. mit Wanderstöcken auf Abstand, indem Sie sie schräg nach unten in Richtung Hund strecken. Versuchen Sie nicht, die Herdenschutzhunde mit erhobenen Stöcken oder Herumfuchteln zu bedrohen.</li><li>Ziehen Sie sich langsam zurück. Gehen Sie wenn nötig rückwärts.</li><li>Wenn Sie weit genug von der Herde entfernt sind, werden die Hunde Sie unbehelligt ziehen lassen. Umgehen Sie die Herde weiträumig. Wenn dies nicht möglich ist oder Sie sich unsicher fühlen, kehren Sie um.</li></ul><strong>Online-Informationen:</strong><ul><li><a href='https://www.herdenschutzschweiz.ch/' target='_blank' style='color:#4A5E3A;'>herdenschutzschweiz.ch</a> – Informationen und Verhaltensregeln</li><li><a href='https://www.protectiondestroupeaux.ch/map/' target='_blank' style='color:#4A5E3A;'>Online-Karte</a> – wo man auf durch Hunde geschützte Herden treffen kann</li><li><a href='https://www.protectiondestroupeaux.ch/fileadmin/doc/Herdenschutzmassnahmen/Herdenschutzhunde/3286___1___D_23_WEB_LINK_Infomaterial.pdf' target='_blank' style='color:#4A5E3A;'>Information Herdenschutzhunde und Tourismus</a></li></ul><br><em>(Quelle: agridea, <a href='https://www.herdenschutzschweiz.ch/' target='_blank' style='color:#4A5E3A;'>herdenschutzschweiz.ch</a>)</em>",
+   "Wenn die Herdenschutzhunde sich nicht beruhigen:<ul><li>Obwohl Sie ruhig gewartet haben, vergrössern Sie den Abstand zur Herde.</li><li>Falls nötig, halten Sie die Hunde z.B. mit Wanderstöcken auf Abstand, indem Sie sie schräg nach unten in Richtung Hund strecken. Versuchen Sie nicht, die Herdenschutzhunde mit erhobenen Stöcken oder Herumfuchteln zu bedrohen.</li><li>Ziehen Sie sich langsam zurück. Gehen Sie wenn nötig rückwärts.</li><li>Wenn Sie weit genug von der Herde entfernt sind, werden die Hunde Sie unbehelligt ziehen lassen. Umgehen Sie die Herde weiträumig. Wenn dies nicht möglich ist oder Sie sich unsicher fühlen, kehren Sie um.</li></ul><strong>Online-Informationen:</strong><ul><li><a href='https://www.herdenschutzschweiz.ch/' target='_blank' rel='noopener'>herdenschutzschweiz.ch</a> – Informationen und Verhaltensregeln</li><li><a href='https://www.protectiondestroupeaux.ch/map/' target='_blank' rel='noopener'>Online-Karte</a> – wo man auf durch Hunde geschützte Herden treffen kann</li><li><a href='https://www.protectiondestroupeaux.ch/fileadmin/doc/Herdenschutzmassnahmen/Herdenschutzhunde/3286___1___D_23_WEB_LINK_Infomaterial.pdf' target='_blank' rel='noopener'>Information Herdenschutzhunde und Tourismus</a></li></ul><br><em>(Quelle: agridea, <a href='https://www.herdenschutzschweiz.ch/' target='_blank' rel='noopener'>herdenschutzschweiz.ch</a>)</em>",
    "Angesprochene Person (Arosa T., TESSVM, Pärke).",
    "Plantahof GR (Jan Boner); agridea",
    [["Jan Boner (Plantahof GR)","+41 81 257 60 00","info@plantahof.gr.ch"]]],
 
   ["Unterwegs mit Herdenschutzhunden","Ich habe meinen eigenen Hund dabei",
-   "Wenn Sie mit Ihrem eigenen Hund unverhofft an eine geschützte Herde gelangen:<ul><li>Nehmen Sie Ihren Hund an die Leine.</li><li>Versuchen Sie nie, mit Ihrem eigenen Hund eine geschützte Herde zu durchqueren!</li><li>Umgehen Sie die Herde weiträumig.</li><li>Im Zweifelsfalle kehren Sie um.</li></ul>Bitte bringen Sie beim Wandern in Gebieten mit arbeitenden Schutzhunden Ihren eigenen Hund nicht mit – unbekannte Hunde provozieren bei Herdenschutzhunden ein starkes Abwehrverhalten!<br><em>(Quelle: agridea, <a href='https://www.herdenschutzschweiz.ch/' target='_blank' style='color:#4A5E3A;'>herdenschutzschweiz.ch</a>)</em>",
+   "Wenn Sie mit Ihrem eigenen Hund unverhofft an eine geschützte Herde gelangen:<ul><li>Nehmen Sie Ihren Hund an die Leine.</li><li>Versuchen Sie nie, mit Ihrem eigenen Hund eine geschützte Herde zu durchqueren!</li><li>Umgehen Sie die Herde weiträumig.</li><li>Im Zweifelsfalle kehren Sie um.</li></ul>Bitte bringen Sie beim Wandern in Gebieten mit arbeitenden Schutzhunden Ihren eigenen Hund nicht mit – unbekannte Hunde provozieren bei Herdenschutzhunden ein starkes Abwehrverhalten!<br><em>(Quelle: agridea, <a href='https://www.herdenschutzschweiz.ch/' target='_blank' rel='noopener'>herdenschutzschweiz.ch</a>)</em>",
    "Angesprochene Person (Arosa T., TESSVM, Pärke).",
    "Plantahof GR (Jan Boner); agridea",
    [["Jan Boner (Plantahof GR)","+41 81 257 60 00","info@plantahof.gr.ch"]]],
@@ -382,7 +455,7 @@ const D = [
    "Keine eigene Position. Chancen betonen, sachlich informieren.",
    "FHGR; AJF",
    [["Arno Puorger (AJF)","+41 81 257 38 92","info@ajf.gr.ch"],
-   ["Christian Baumgartner (FHGR)","+41 81 286 38 40","christian.baumgartner@fhgr.ch"]]],
+    ["Christian Baumgartner (FHGR)","+41 81 286 38 40","christian.baumgartner@fhgr.ch"]]],
 
   ["Weitere Fragen und Vorwürfe","Der Wolf reisst meine Tiere für die Jagd!",
    "Aktuell nehmen die grossen Beutegreifer den Jägern keine «Beute» weg. Viele Huftierbestände sind so gross, dass trotz Beutegreifern und Jägern sogar Sonderjagden erforderlich sind, um die «notwendigen» Abschüsse zu erzielen.<br><br>Die grossen Beutegreifer unterstützen die natürliche Regulierung der Wildtierpopulationen und ergänzen damit eine zentrale Funktion der Jagd. Wolf und Luchs übernehmen wieder ihre ökologische Schlüsselrolle und tragen zu einem gesunden, stabilen Wildbestand bei.",
@@ -398,10 +471,8 @@ const D = [
 
 // ── NAVIGATION ────────────────────────────────────────────────────────────
 function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(function (s) { s.classList.remove('active'); });
   document.getElementById(id).classList.add('active');
-  var sec = document.querySelector('.grf-beutegreifer');
-  if (sec) { var top = sec.getBoundingClientRect().top + window.pageYOffset - 20; if (window.pageYOffset > top) window.scrollTo({top: top, behavior: 'smooth'}); }
 }
 
 function resetAll() {
@@ -409,9 +480,8 @@ function resetAll() {
   showScreen('screen-thema');
 }
 
-// Klick-Handling (Desktop + Mobile). Der Browser feuert "click" nur bei
-// einem echten Tippen, nicht beim Scrollen.
-function addTouchHandler(el, fn) {
+// Nur das normale "click"-Event (feuert bei echtem Tippen, nicht beim Scrollen)
+function addClick(el, fn) {
   if (!el) return;
   el.addEventListener('click', function (e) {
     e.preventDefault();
@@ -419,24 +489,22 @@ function addTouchHandler(el, fn) {
   });
 }
 
-// ── KACHEL-GRID (einmalig beim Start) ────────────────────────────────────
+// ── KACHEL-GRID ───────────────────────────────────────────────────────────
 function initGrid() {
   const grid = document.getElementById('themen-grid');
   grid.innerHTML = '';
-  themen.forEach(t => {
+  themen.forEach(function (t) {
     const btn = document.createElement('button');
     btn.className = 'thema-btn' + (t.special ? ' utility' : '');
     btn.setAttribute('type', 'button');
-    btn.setAttribute('ontouchstart', '');
-    btn.innerHTML = `<span class="t-icon">${t.icon}</span><span class="t-name">${t.name}</span>`;
-    addTouchHandler(btn, () => selectThema(t));
+    btn.innerHTML = '<span class="t-icon" aria-hidden="true">' + t.icon + '</span><span class="t-name">' + t.name + '</span>';
+    addClick(btn, function () { selectThema(t); });
     grid.appendChild(btn);
   });
 }
 
 // ── THEMA WÄHLEN ──────────────────────────────────────────────────────────
 function selectThema(themaObj) {
-  // Links: direkt zu Links-Screen
   if (themaObj.special === 'links') {
     document.getElementById('links-content').innerHTML = renderLinksView();
     showScreen('screen-links');
@@ -446,7 +514,7 @@ function selectThema(themaObj) {
   state.thema = themaObj.name;
   state.isInfo = (themaObj.special === 'info');
 
-  const stichworte = D.filter(r => r[0] === themaObj.name).map(r => r[1]);
+  const stichworte = D.filter(function (r) { return r[0] === themaObj.name; }).map(function (r) { return r[1]; });
   const list = document.getElementById('stich-list');
   list.innerHTML = '';
   document.getElementById('stich-nav-title').textContent = themaObj.icon + ' ' + themaObj.name;
@@ -454,13 +522,12 @@ function selectThema(themaObj) {
   if (stichworte.length === 0) {
     list.innerHTML = '<div class="empty"><div class="e-icon">🔍</div><p>Keine Einträge für dieses Themenfeld gefunden.</p></div>';
   } else {
-    stichworte.forEach(s => {
+    stichworte.forEach(function (s) {
       const btn = document.createElement('button');
       btn.className = 'stich-btn';
       btn.setAttribute('type', 'button');
-      btn.setAttribute('ontouchstart', '');
-      btn.innerHTML = `<span>${s}</span><span class="arrow">›</span>`;
-      addTouchHandler(btn, () => selectStichwort(s));
+      btn.innerHTML = '<span>' + s + '</span><span class="arrow" aria-hidden="true">›</span>';
+      addClick(btn, function () { selectStichwort(s); });
       list.appendChild(btn);
     });
   }
@@ -471,20 +538,14 @@ function selectThema(themaObj) {
 function selectStichwort(s) {
   state.stichwort = s;
   state.tab = 'wording';
-  const row = D.find(r => r[0] === state.thema && r[1] === s);
+  const row = D.find(function (r) { return r[0] === state.thema && r[1] === s; });
   if (!row) return;
 
   window._row = row;
 
-  const themaObj = themen.find(t => t.name === state.thema);
-  document.getElementById('ausgabe-nav-title').textContent =
-    (themaObj ? themaObj.icon + ' ' : '') + s;
+  const themaObj = themen.find(function (t) { return t.name === state.thema; });
+  document.getElementById('ausgabe-nav-title').textContent = (themaObj ? themaObj.icon + ' ' : '') + s;
 
-  // Tab-Bar ausblenden bei Anleitung (isInfo) und Entscheidungsbaum
-  const _noTabs = state.isInfo || (row && row[2] === '__ENTSCHEIDUNGSBAUM__');
-  document.getElementById('toggle-bar').style.display = _noTabs ? 'none' : '';
-
-  renderTab('wording');
   switchTab('wording');
   showScreen('screen-ausgabe');
 }
@@ -492,12 +553,13 @@ function selectStichwort(s) {
 // ── TAB WECHSELN ──────────────────────────────────────────────────────────
 function switchTab(tab) {
   state.tab = tab;
-  ['wording','zustaendig','kontakt'].forEach(t => {
+  ['wording', 'zustaendig', 'kontakt'].forEach(function (t) {
     document.getElementById('tab-' + t).classList.toggle('active', t === tab);
   });
-  const _r = window._row;
-  const _nt = state.isInfo || (_r && _r[2] === '__ENTSCHEIDUNGSBAUM__');
-  document.getElementById('toggle-bar').style.display = _nt ? 'none' : '';
+  // Tab-Leiste ausblenden bei Anleitung und Entscheidungsbaum
+  const r = window._row;
+  const noTabs = state.isInfo || (r && r[2] === '__ENTSCHEIDUNGSBAUM__');
+  document.getElementById('toggle-bar').style.display = noTabs ? 'none' : '';
   renderTab(tab);
 }
 
@@ -508,82 +570,28 @@ function renderTab(tab) {
   const content = document.getElementById('ausgabe-content');
   const wording = row[2];
 
-  // Spezial-Marker (Anleitung-Seiten)
-  if (wording === '__NUTZUNG__')      { content.innerHTML = renderNutzung();      return; }
-  if (wording === '__GRUNDSAETZE__')  { content.innerHTML = renderGrundsaetze();  return; }
-  if (wording === '__KOMPETENZ__')    { content.innerHTML = renderKompetenz();     return; }
+  if (wording === '__NUTZUNG__')           { content.innerHTML = renderNutzung();           return; }
+  if (wording === '__GRUNDSAETZE__')       { content.innerHTML = renderGrundsaetze();       return; }
+  if (wording === '__KOMPETENZ__')         { content.innerHTML = renderKompetenz();         return; }
   if (wording === '__ABKUERZUNGEN__')      { content.innerHTML = renderAbkuerzungen();      return; }
   if (wording === '__ENTSCHEIDUNGSBAUM__') { content.innerHTML = renderEntscheidungsbaum(); return; }
 
-// ── RENDERER: ENTSCHEIDUNGSBAUM ───────────────────────────────────────────
-function renderEntscheidungsbaum() {
-  return `<div style="padding:4px 0;">
-<div style="font-size:12px;line-height:1.6;color:#1A1F1A;">
-<div style="background:#2C3E2D;color:#FAFAF8;border-radius:10px;padding:10px 14px;margin-bottom:4px;">
-  <strong>Ausgangslage</strong><br>Du hast eine Frage, Beschwerde oder Meldung zu grossen Beutegreifern erhalten.
-</div>
-<div style="text-align:center;font-size:20px;color:#4A5E3A;margin:2px 0;">&#8595;</div>
-
-<div style="border:1.5px solid #4A5E3A;border-radius:10px;padding:10px 12px;margin-bottom:4px;background:#FAFAF8;">
-  <div style="font-weight:700;color:#2C3E2D;margin-bottom:5px;">❓ Frage 1: Medienanfrage?</div>
-  <div style="margin-bottom:8px;color:#3a4a3a;font-size:12px;">Stammt die Anfrage von einer Journalistin, einem Redaktor oder einem Medienhaus?</div>
-  <div style="background:#fef5f5;border-left:3px solid #C0392B;padding:6px 10px;border-radius:0 6px 6px 0;margin-bottom:5px;font-size:12px;"><strong style="color:#C0392B;">JA &rarr;</strong> Nicht selbst beantworten. Kommunikationsverantwortliche der eigenen Organisation einbeziehen. Im Kontext des Projektes T&amp;B die FHGR informieren. Antwort koordinieren (siehe Frage 4).</div>
-  <div style="background:#f0f5f0;border-left:3px solid #4A5E3A;padding:6px 10px;border-radius:0 6px 6px 0;font-size:12px;"><strong style="color:#4A5E3A;">NEIN &rarr;</strong> weiter zu Frage 2</div>
-</div>
-<div style="text-align:center;font-size:20px;color:#4A5E3A;margin:2px 0;">&#8595;</div>
-
-<div style="border:1.5px solid #4A5E3A;border-radius:10px;padding:10px 12px;margin-bottom:4px;background:#FAFAF8;">
-  <div style="font-weight:700;color:#2C3E2D;margin-bottom:5px;">❓ Frage 2: Thema abgedeckt?</div>
-  <div style="margin-bottom:8px;color:#3a4a3a;font-size:12px;">Findet sich das Thema in der Kommunikationshilfe?</div>
-  <div style="background:#fef5f5;border-left:3px solid #C0392B;padding:6px 10px;border-radius:0 6px 6px 0;margin-bottom:5px;font-size:12px;"><strong style="color:#C0392B;">JA &rarr;</strong> Dort die zuständige Stelle nachschlagen und die Anfrage weiterleiten.</div>
-  <div style="background:#f0f5f0;border-left:3px solid #4A5E3A;padding:6px 10px;border-radius:0 6px 6px 0;font-size:12px;"><strong style="color:#4A5E3A;">NEIN &rarr;</strong> weiter zu Frage 3</div>
-</div>
-<div style="text-align:center;font-size:20px;color:#4A5E3A;margin:2px 0;">&#8595;</div>
-
-<div style="border:1.5px solid #4A5E3A;border-radius:10px;padding:10px 12px;margin-bottom:4px;background:#FAFAF8;">
-  <div style="font-weight:700;color:#2C3E2D;margin-bottom:5px;">❓ Frage 3: Info ausreichend?</div>
-  <div style="margin-bottom:8px;color:#3a4a3a;font-size:12px;">Habe ich genug Wissen und Handlungsspielraum, um sachlich korrekt zu antworten, ohne zu spekulieren oder Positionen ausserhalb meiner Kompetenz zu beziehen?</div>
-  <div style="background:#fef5f5;border-left:3px solid #C0392B;padding:6px 10px;border-radius:0 6px 6px 0;margin-bottom:5px;font-size:12px;"><strong style="color:#C0392B;">JA &rarr;</strong> Fachstelle beiziehen und koordiniert antworten. Möglich ist auch ein Mittelweg: Eine Erstantwort gemäss Kommunikationshilfe geben und bei weiterführenden Fragen auf die zuständige Fachstelle verweisen.</div>
-  <div style="background:#f0f5f0;border-left:3px solid #4A5E3A;padding:6px 10px;border-radius:0 6px 6px 0;font-size:12px;"><strong style="color:#4A5E3A;">NEIN &rarr;</strong> weiter zu Frage 4</div>
-</div>
-<div style="text-align:center;font-size:20px;color:#4A5E3A;margin:2px 0;">&#8595;</div>
-
-<div style="border:1.5px solid #4A5E3A;border-radius:10px;padding:10px 12px;margin-bottom:4px;background:#FAFAF8;">
-  <div style="font-weight:700;color:#2C3E2D;margin-bottom:5px;">❓ Frage 4: Mehrere Stellen angeschrieben?</div>
-  <div style="margin-bottom:8px;color:#3a4a3a;font-size:12px;">Wurde die Anfrage gleichzeitig an andere Projektpartner oder Stellen gesendet?</div>
-  <div style="background:#fef5f5;border-left:3px solid #C0392B;padding:6px 10px;border-radius:0 6px 6px 0;margin-bottom:5px;font-size:12px;"><strong style="color:#C0392B;">JA &rarr;</strong> Kurze Abstimmung: wer, was antwortet, damit nach aussen eine einheitliche Aussage erscheint.</div>
-  <div style="background:#f0f5f0;border-left:3px solid #4A5E3A;padding:6px 10px;border-radius:0 6px 6px 0;font-size:12px;"><strong style="color:#4A5E3A;">NEIN &rarr;</strong> Selbst antworten mit offiziellem Wording gemäss Kommunikationshilfe.</div>
-</div>
-
-<div style="background:#f4f2ee;border:1.5px dashed #7A9068;border-radius:10px;padding:10px 12px;margin-top:4px;font-size:11px;">
-  <strong>Grundsatz für alle Schritte:</strong> Im Zweifel lieber kurz bestätigen («Ich kläre das ab und melde mich») als unabgestimmt oder unvollständig antworten.
-</div>
-</div></div>`;
-}
-
-  // Standard-Tabs
   if (tab === 'wording') {
-    content.innerHTML = `
-      <div class="wording-card">
-        <div class="card-label">Offizielles Wording</div>
-        <div class="wording-text">${wording}</div>
-      </div>
-      <div class="erstreaktion-box">
-        <div class="erstreaktion-label">Erstreaktion</div>
-        <div class="erstreaktion-text">${row[3]}</div>
-      </div>`;
+    content.innerHTML =
+      '<div class="wording-card">' +
+        '<div class="card-label">Offizielles Wording</div>' +
+        '<div class="wording-text">' + wording + '</div>' +
+      '</div>' +
+      '<div class="erstreaktion-box">' +
+        '<div class="erstreaktion-label">Erstreaktion</div>' +
+        '<div class="erstreaktion-text">' + row[3] + '</div>' +
+      '</div>';
   } else if (tab === 'zustaendig') {
-    content.innerHTML = `
-      <div class="meta-section">
-        <div class="meta-row">
-          <span class="meta-label">Erstreaktion</span>
-          <span class="meta-val">${row[3]}</span>
-        </div>
-        <div class="meta-row">
-          <span class="meta-label">Fachliche Verantwortung</span>
-          <span class="meta-val">${row[4]}</span>
-        </div>
-      </div>`;
+    content.innerHTML =
+      '<div class="meta-section">' +
+        '<div class="meta-row"><span class="meta-label">Erstreaktion</span><span class="meta-val">' + row[3] + '</span></div>' +
+        '<div class="meta-row"><span class="meta-label">Fachliche Verantwortung</span><span class="meta-val">' + row[4] + '</span></div>' +
+      '</div>';
   } else if (tab === 'kontakt') {
     const contacts = row[5];
     if (!contacts || contacts.length === 0) {
@@ -591,26 +599,54 @@ function renderEntscheidungsbaum() {
       return;
     }
     let html = '';
-    contacts.forEach(function(c) {
-      const name = c[0], tel = c[1], mail = c[2];
-      html += `<div class="kontakt-card">
-        <div class="card-label">Ansprechperson</div>
-        <div class="kontakt-name">${name}</div>
-        <div class="kontakt-actions">
-          <a href="tel:${tel.replace(/\s/g,'')}" class="kontakt-btn btn-tel">📞 ${tel}</a>
-        </div>
-        <div class="kontakt-actions">
-          <a href="mailto:${mail}" class="kontakt-btn btn-mail">✉️ ${mail}</a>
-        </div>
-      </div>`;
+    contacts.forEach(function (c) {
+      html += '<div class="kontakt-card">' +
+        '<div class="card-label">Ansprechperson</div>' +
+        '<div class="kontakt-name">' + c[0] + '</div>' +
+        '<div class="kontakt-actions"><a href="tel:' + c[1].replace(/\s/g, '') + '" class="btn btn-small btn-primary">📞 ' + c[1] + '</a></div>' +
+        '<div class="kontakt-actions"><a href="mailto:' + c[2] + '" class="btn btn-small btn-secondary">✉️ ' + c[2] + '</a></div>' +
+      '</div>';
     });
     content.innerHTML = html;
   }
 }
 
+// ── RENDERER: ENTSCHEIDUNGSBAUM ───────────────────────────────────────────
+function dtQuestion(title, text, ja, nein) {
+  return '<div class="dt-q">' +
+    '<div class="dt-q-title">❓ ' + title + '</div>' +
+    '<div class="dt-q-text">' + text + '</div>' +
+    (ja ? '<div class="dt-ja"><strong>JA &rarr;</strong> ' + ja + '</div>' : '') +
+    '<div class="dt-nein"><strong>NEIN &rarr;</strong> ' + nein + '</div>' +
+  '</div>';
+}
+function renderEntscheidungsbaum() {
+  const arrow = '<div class="dt-arrow" aria-hidden="true">&#8595;</div>';
+  return '<div class="dt">' +
+    '<div class="dt-start"><strong>Ausgangslage</strong><br>Du hast eine Frage, Beschwerde oder Meldung zu grossen Beutegreifern erhalten.</div>' + arrow +
+    dtQuestion('Frage 1: Medienanfrage?',
+      'Stammt die Anfrage von einer Journalistin, einem Redaktor oder einem Medienhaus?',
+      'Nicht selbst beantworten. Kommunikationsverantwortliche der eigenen Organisation einbeziehen. Im Kontext des Projektes T&amp;B die FHGR informieren. Antwort koordinieren (siehe Frage 4).',
+      'weiter zu Frage 2') + arrow +
+    dtQuestion('Frage 2: Thema abgedeckt?',
+      'Findet sich das Thema in der Kommunikationshilfe?',
+      'Dort die zuständige Stelle nachschlagen und die Anfrage weiterleiten.',
+      'weiter zu Frage 3') + arrow +
+    dtQuestion('Frage 3: Info ausreichend?',
+      'Habe ich genug Wissen und Handlungsspielraum, um sachlich korrekt zu antworten, ohne zu spekulieren oder Positionen ausserhalb meiner Kompetenz zu beziehen?',
+      'Fachstelle beiziehen und koordiniert antworten. Möglich ist auch ein Mittelweg: Eine Erstantwort gemäss Kommunikationshilfe geben und bei weiterführenden Fragen auf die zuständige Fachstelle verweisen.',
+      'weiter zu Frage 4') + arrow +
+    dtQuestion('Frage 4: Mehrere Stellen angeschrieben?',
+      'Wurde die Anfrage gleichzeitig an andere Projektpartner oder Stellen gesendet?',
+      'Kurze Abstimmung: wer, was antwortet, damit nach aussen eine einheitliche Aussage erscheint.',
+      'Selbst antworten mit offiziellem Wording gemäss Kommunikationshilfe.') +
+    '<div class="dt-note"><strong>Grundsatz für alle Schritte:</strong> Im Zweifel lieber kurz bestätigen («Ich kläre das ab und melde mich») als unabgestimmt oder unvollständig antworten.</div>' +
+  '</div>';
+}
+
 // ── RENDERER: NUTZUNGSHINWEIS ──────────────────────────────────────────────
 function renderNutzung() {
-  return `<div class="info-scroll">
+  return `<div>
     <div class="info-card">
       <div class="info-card-header">So funktioniert dieses Tool</div>
       <div class="info-step">
@@ -649,7 +685,7 @@ function renderNutzung() {
 
 // ── RENDERER: KOMMUNIKATIONSGRUNDSÄTZE ────────────────────────────────────
 function renderGrundsaetze() {
-  return `<div class="info-scroll">
+  return `<div>
     <div class="info-card">
       <div class="info-card-header">Übergreifende Kommunikationsgrundsätze</div>
       <div class="info-step">
@@ -693,7 +729,7 @@ function renderGrundsaetze() {
 
 // ── RENDERER: ZUSTÄNDIGKEITEN & KOMPETENZ ────────────────────────────────
 function renderKompetenz() {
-  return `<div class="info-scroll">
+  return `<div>
     <div class="info-card">
       <div class="info-card-header">Grundsatz</div>
       <div class="info-card-body">
@@ -716,7 +752,7 @@ function renderKompetenz() {
       </div>
       <div class="info-step">
         <div class="info-step-num">⚖️</div>
-        <div class="info-step-text"><div class="info-step-title">Rechtliche Fragen, Abschussentscheide</div>AJF · BAFU – keine eigene Positionierung </div>
+        <div class="info-step-text"><div class="info-step-title">Rechtliche Fragen, Abschussentscheide</div>AJF · BAFU – keine eigene Positionierung</div>
       </div>
       <div class="info-step">
         <div class="info-step-num">📋</div>
@@ -748,14 +784,12 @@ function renderAbkuerzungen() {
     ["KORA","Forschungsstelle Raubtierökologie"],
     ["SNP","Schweizerischer Nationalpark"],
     ["TESSVM","Tourismus Engadin Scuol Samnaun Val Müstair AG"],
-    ["T&B","Tourismus und (die Rückkehr der grossen) Beutegreifer"],
-  ].map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('');
-  return `<div class="info-scroll">
+    ["T&amp;B","Tourismus und (die Rückkehr der grossen) Beutegreifer"],
+  ].map(function (r) { return '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td></tr>'; }).join('');
+  return `<div>
     <div class="info-card">
       <div class="info-card-header">Abkürzungsübersicht</div>
-      <div class="info-card-body" style="padding:0;">
-        <table class="abk-table">${rows}</table>
-      </div>
+      <table class="abk-table">${rows}</table>
     </div>
   </div>`;
 }
@@ -800,72 +834,67 @@ function renderLinksView() {
       { label: "Projektwebsite Tourismus und die Rückkehr der grossen Beutegreifer", desc: "beutegreifer.fhgr.ch", url: "https://beutegreifer.fhgr.ch/" },
     ]},
   ];
-  return '<div class="links-grid">' + sections.map(sec => `
-    <div class="links-tile">
-      <div class="links-tile-header">${sec.title}</div>
-      ${sec.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="link-item">
-        <span class="link-text">${l.label}<span class="link-desc">${l.desc}</span></span>
-        <span class="link-arrow">↗</span>
-      </a>`).join('')}
-    </div>`).join('') + '</div>';
+  return '<div class="links-grid">' + sections.map(function (sec) {
+    return '<div class="links-tile">' +
+      '<div class="links-tile-header">' + sec.title + '</div>' +
+      sec.links.map(function (l) {
+        return '<a href="' + l.url + '" target="_blank" rel="noopener" class="link-item">' +
+          '<span class="link-text">' + l.label + '<span class="link-desc">' + l.desc + '</span></span>' +
+          '<span class="link-arrow" aria-hidden="true">↗</span></a>';
+      }).join('') +
+    '</div>';
+  }).join('') + '</div>';
 }
 
 // ── EVENT LISTENERS ───────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', function() {
-  // Grid initialisieren
+document.addEventListener('DOMContentLoaded', function () {
   initGrid();
-
-  // Navigation
-  addTouchHandler(document.getElementById('back-stich'),  () => { state.thema = null; showScreen('screen-thema'); });
-  addTouchHandler(document.getElementById('back-ausgabe'), () => { state.stichwort = null; state.tab = 'wording'; showScreen('screen-stich'); });
-  addTouchHandler(document.getElementById('back-links'),  () => showScreen('screen-thema'));
-  addTouchHandler(document.getElementById('btn-reset'),   () => resetAll());
-
-  // Tabs
-  addTouchHandler(document.getElementById('tab-wording'),    () => switchTab('wording'));
-  addTouchHandler(document.getElementById('tab-zustaendig'), () => switchTab('zustaendig'));
-  addTouchHandler(document.getElementById('tab-kontakt'),    () => switchTab('kontakt'));
+  addClick(document.getElementById('back-stich'),   function () { state.thema = null; showScreen('screen-thema'); });
+  addClick(document.getElementById('back-ausgabe'), function () { state.stichwort = null; state.tab = 'wording'; showScreen('screen-stich'); });
+  addClick(document.getElementById('back-links'),   function () { showScreen('screen-thema'); });
+  addClick(document.getElementById('btn-reset'),    resetAll);
+  addClick(document.getElementById('tab-wording'),    function () { switchTab('wording'); });
+  addClick(document.getElementById('tab-zustaendig'), function () { switchTab('zustaendig'); });
+  addClick(document.getElementById('tab-kontakt'),    function () { switchTab('kontakt'); });
 });
+</script>
 
-// ── OFFLINE BANNER ────────────────────────────────────────────────────────
-
-
-
-
-
-// ── AUTO-HEIGHT: meldet die Inhaltshoehe an die einbettende Seite (iframe) ──
-(function(){
-  var last = 0;
-  function reportHeight(){
-  try{
-    var d = document;
-    var h = Math.ceil(Math.max(
-      d.body.scrollHeight, d.body.offsetHeight,
-      d.documentElement.scrollHeight, d.documentElement.offsetHeight,
-      d.documentElement.getBoundingClientRect().height
-    ));
-    if (h && Math.abs(h - last) > 1){
-      last = h;
-      parent.postMessage({ height: h }, '*');
-    }
-  }catch(e){}
-}
-  window.addEventListener('load', reportHeight);
-  window.addEventListener('resize', reportHeight);
-  document.addEventListener('click', function(){ setTimeout(reportHeight, 80); });
-
-  // Beobachtet Inhaltsaenderungen (Kacheln, Themenwechsel) und misst automatisch neu
-  if (window.ResizeObserver){
-    var target = document.querySelector('.grf-beutegreifer') || document.body;
-    new ResizeObserver(reportHeight).observe(target);
+<script>
+/* ===== GRF Auto-Height Sender – NICHT VERÄNDERN ===== */
+(function () {
+  var lastHeight = 0, scheduled = false;
+  function getHeight() {
+    var b = document.body;
+    if (!b) return 0;
+    return Math.ceil(Math.max(b.scrollHeight, b.offsetHeight, b.getBoundingClientRect().height));
   }
-
-  // Sicherheitsnetz fuer den ersten Aufbau
-  setTimeout(reportHeight, 100);
-  setTimeout(reportHeight, 500);
-  setTimeout(reportHeight, 1200);
+  function send() {
+    scheduled = false;
+    var h = getHeight();
+    if (h > 0 && Math.abs(h - lastHeight) > 1) {   // nur echte Änderungen senden, kein Loop
+      lastHeight = h;
+      window.parent.postMessage({ height: h }, '*');
+    }
+  }
+  function schedule() {
+    if (scheduled) return;
+    scheduled = true;
+    (window.requestAnimationFrame || setTimeout)(send);
+  }
+  window.addEventListener('load', schedule);
+  window.addEventListener('resize', schedule);
+  window.addEventListener('orientationchange', function () { setTimeout(schedule, 300); });
+  document.addEventListener('click', function () { setTimeout(schedule, 100); }, true);
+  if (window.ResizeObserver) new ResizeObserver(schedule).observe(document.body);
+  if (window.MutationObserver) {
+    new MutationObserver(schedule).observe(document.body, {
+      childList: true, subtree: true, attributes: true, characterData: true
+    });
+  }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
+  [100, 500, 1500].forEach(function (t) { setTimeout(schedule, t); });
+  schedule();
 })();
-
 </script>
 </body>
 </html>
